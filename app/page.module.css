@@ -1,141 +1,96 @@
-.page {
-  --background: #fafafa;
-  --foreground: #fff;
-
-  --text-primary: #000;
-  --text-secondary: #666;
-
-  --button-primary-hover: #383838;
-  --button-secondary-hover: #f2f2f2;
-  --button-secondary-border: #ebebeb;
-
+.banner {
+  background:
+    linear-gradient(to top, rgba(0, 0, 000, 0.7) 10%, transparent),
+    url("../public/images/banner-img.png") center / cover no-repeat border-box;
+  width: 100vw;
+  height: 80vh;
   display: flex;
-  min-height: 100vh;
-  align-items: center;
+  flex-direction: column;
   justify-content: center;
-  font-family: var(--font-geist-sans);
-  background-color: var(--background);
+  align-items: center;
+  color: white;
 }
-
-.main {
+.banner button {
+  background: rgba(191, 236, 60, 1);
+  background: linear-gradient(
+    179deg,
+    rgba(191, 236, 60, 1) 0%,
+    rgba(158, 194, 50, 1) 50%,
+    rgba(114, 138, 41, 1) 100%
+  );
+  color: white;
+  padding: 1rem;
+  font-size: 15px;
+  margin-top: 2rem;
+  font-weight: bold;
+  font-family: "Montserrat", sans-serif;
+  border: none;
+  border-radius: 10px;
+}
+.banner button:hover {
+  background: #728a29;
+  background: linear-gradient(
+    179deg,
+    rgba(114, 138, 41, 1) 0%,
+    rgba(84, 99, 26, 1) 50%,
+    rgba(42, 56, 15, 1) 100%
+  );
+  cursor: pointer;
+}
+.search {
+  padding: 4rem;
   display: flex;
-  min-height: 100vh;
-  width: 100%;
-  max-width: 800px;
   flex-direction: column;
-  align-items: flex-start;
-  justify-content: space-between;
-  background-color: var(--foreground);
-  padding: 120px 60px;
+  align-items: center;
 }
-
-.intro {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  text-align: left;
-  gap: 24px;
-}
-
-.intro h1 {
-  max-width: 320px;
-  font-size: 40px;
-  font-weight: 600;
-  line-height: 48px;
-  letter-spacing: -2.4px;
-  text-wrap: balance;
-  color: var(--text-primary);
-}
-
-.intro p {
-  max-width: 440px;
-  font-size: 18px;
-  line-height: 32px;
-  text-wrap: balance;
-  color: var(--text-secondary);
-}
-
-.intro a {
-  font-weight: 500;
-  color: var(--text-primary);
-}
-
-.ctas {
+.search-bar {
   display: flex;
   flex-direction: row;
-  width: 100%;
-  max-width: 440px;
-  gap: 16px;
-  font-size: 14px;
-}
-
-.ctas a {
-  display: flex;
   justify-content: center;
   align-items: center;
-  height: 40px;
-  padding: 0 16px;
-  border-radius: 128px;
-  border: 1px solid transparent;
-  transition: 0.2s;
+  padding: 3rem;
+  width: 100%;
+}
+
+.search-bar input,
+.search-bar button {
+  box-sizing: border-box;
+  height: 56px;
+  margin: 0;
+}
+
+.search-bar input {
+  width: 70vw;
+  padding: 1rem;
+  outline: none;
+  border: 1px solid #ddd;
+  border-right: none;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+.search-bar button {
+  width: 80px;
+  padding: 1rem;
+  border: none;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  background: rgb(174, 214, 54);
   cursor: pointer;
-  width: fit-content;
-  font-weight: 500;
 }
-
-a.primary {
-  background: var(--text-primary);
-  color: var(--background);
-  gap: 8px;
+.search-bar button:hover {
+  background: #728a29;
+  background: linear-gradient(
+    179deg,
+    rgba(114, 138, 41, 1) 0%,
+    rgba(84, 99, 26, 1) 50%,
+    rgba(42, 56, 15, 1) 100%
+  );
 }
-
-a.secondary {
-  border-color: var(--button-secondary-border);
-}
-
-/* Enable hover only on non-touch devices */
-@media (hover: hover) and (pointer: fine) {
-  a.primary:hover {
-    background: var(--button-primary-hover);
-    border-color: transparent;
-  }
-
-  a.secondary:hover {
-    background: var(--button-secondary-hover);
-    border-color: transparent;
+@media (min-widht: 40rem) {
+  .search {
+    margin: 4rem;
   }
 }
-
-@media (max-width: 600px) {
-  .main {
-    padding: 48px 24px;
-  }
-
-  .intro {
-    gap: 16px;
-  }
-
-  .intro h1 {
-    font-size: 32px;
-    line-height: 40px;
-    letter-spacing: -1.92px;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .logo {
-    filter: invert();
-  }
-
-  .page {
-    --background: #000;
-    --foreground: #000;
-
-    --text-primary: #ededed;
-    --text-secondary: #999;
-
-    --button-primary-hover: #ccc;
-    --button-secondary-hover: #1a1a1a;
-    --button-secondary-border: #1a1a1a;
-  }
+.why-choose-us {
 }

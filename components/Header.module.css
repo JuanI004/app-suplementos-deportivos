@@ -1,0 +1,33 @@
+.header {
+  background: black;
+  color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.3rem 2rem;
+  font-size: 1rem;
+  position: fixed;
+  width: 100vw;
+}
+.nav-items {
+  display: flex;
+  list-style: none;
+  gap: 3rem;
+  align-items: center;
+}
+.nav-items button,
+.nav-items li {
+  font-size: 1rem;
+  font-family: "Montserrat", sans-serif;
+}
+.nav-items__button {
+  color: #bfec3c;
+  font-weight: bold;
+  background: none;
+  border: none;
+}
+.nav-items__button:hover {
+  color: #728a29;
+  cursor: pointer;
+}
