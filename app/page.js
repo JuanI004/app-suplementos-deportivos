@@ -1,66 +1,70 @@
 import Image from "next/image";
 import styles from "./page.module.css";
+import bannerImg from "../public/images/banner-img.png";
 
 export default function Home() {
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className={styles.intro}>
-          <h1>To get started, edit the page.js file.</h1>
-          <p>
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className={styles.secondary}
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+    <>
+      <div className="banner">
+        <Image src={bannerImg} alt="Shaker de proteina" />
+        <h1 className="banner-title">IronFuel</h1>
+        <h3 className="banner-subtitle">
+          El combustible que tu cuerpo necesita para superar cada entrenamiento.
+        </h3>
+      </div>
+      <button>Ver nuestro catalogo</button>
+      <div>
+        <h2>¿Por qué elegir IronFuel?</h2>
+        <ul>
+          <li>
+            <h3>Calidad garantizada</h3>
+            <p>
+              Trabajamos con suplementos de marcas reconocidas y fórmulas
+              confiables, pensadas para maximizar fuerza, rendimiento y
+              recuperación.
+            </p>
+          </li>
+          <li>
+            <h3>Calidad garantizada</h3>
+            <p>
+              Trabajamos con suplementos de marcas reconocidas y fórmulas
+              confiables, pensadas para maximizar fuerza, rendimiento y
+              recuperación.
+            </p>
+            <li>
+              <h3>Resultados reales</h3>
+              <p>
+                Nuestros productos están orientados a objetivos concretos: ganar
+                masa muscular, mejorar el desempeño deportivo y optimizar la
+                recuperación post-entreno.
+              </p>
+            </li>
+            <li>
+              <h3>Testeados en los mejores laboratorios</h3>
+              <p>
+                Nuestros productos son analizados y verificados en laboratorios
+                de primer nivel, asegurando pureza, seguridad y efectividad en
+                cada lote.
+              </p>
+            </li>
+            <li>
+              <h3>Para quienes entrenan en serio</h3>
+              <p>
+                IronFuel está pensada para personas comprometidas con su
+                progreso, desde quienes recién comienzan hasta atletas
+                avanzados.
+              </p>
+            </li>
+            <li>
+              <h3>Experiencia y pasión por el fitness</h3>
+              <p>
+                No somos solo una tienda: somos parte de la comunidad fitness y
+                entendemos lo que implica mejorar día a día.
+              </p>
+            </li>
+          </li>
+        </ul>
+      </div>
+    </>
   );
 }
