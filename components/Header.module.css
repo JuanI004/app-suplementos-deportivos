@@ -9,6 +9,9 @@
   font-size: 1rem;
   position: fixed;
   width: 100vw;
+  top: 0;
+  left: 0;
+  z-index: 100;
 }
 .nav-items {
   display: flex;

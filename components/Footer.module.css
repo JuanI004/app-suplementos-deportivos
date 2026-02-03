@@ -29,6 +29,9 @@
   text-decoration: none;
   color: white;
 }
+.footer-section a:hover {
+  color: rgb(201, 200, 200);
+}
 .social-links {
   display: flex;
 }

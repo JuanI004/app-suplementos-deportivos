@@ -1,0 +1,49 @@
+.categorias,
+.marcas {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 1rem;
+  width: 90%;
+  border-bottom: 1px solid #111111;
+}
+.categorias h2 {
+  color: #96de37;
+  margin-bottom: 2rem;
+}
+.categorias ul {
+  list-style: none;
+}
+.categorias li {
+}
+.categoria {
+  display: flex;
+  -webkit-appearance: none;
+  background: none;
+  color: white;
+  margin: 1rem;
+  font-family: "Montserrat";
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+.categoria svg {
+  justify-self: flex-end;
+}
+.marcas button {
+  display: flex;
+  -webkit-appearance: none;
+  background: none;
+  color: white;
+  margin: 1rem;
+  font-family: "Montserrat";
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  align-items: center;
+  justify-content: space-between;
+  width: 177.65px;
+}

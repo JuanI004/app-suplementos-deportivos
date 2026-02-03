@@ -2,7 +2,7 @@ import "./globals.css";
 import { Montserrat } from "next/font/google";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-
+import { ReduxProvider } from "@/store/provider";
 const montserrat = Montserrat({ subsets: ["latin"] });
 
 export const metadata = {
@@ -15,9 +15,13 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={montserrat.className}>
-        <Header />
-        {children}
-        <Footer />
+        <ReduxProvider>
+          <Header />
+          {children}
+          <div className="footer">
+            <Footer />
+          </div>
+        </ReduxProvider>
       </body>
     </html>
   );

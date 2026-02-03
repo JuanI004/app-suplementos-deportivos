@@ -4,20 +4,26 @@ import classes from "./Header.module.css";
 import headerImg from "../public/images/ironfuel-header.png";
 import logo from "../public/images/ironfuel-header.png";
 import { useState } from "react";
+import Link from "next/link";
+import { useSelector } from "react-redux";
 
 export default function Header() {
   const [navIsOpen, setNavIsOpen] = useState(false);
+  const totalQuantity = useSelector((state) => state.totalQuantity);
   function handleToggle() {
     setNavIsOpen((prev) => !prev);
   }
   return (
     <>
       <header className={classes.header}>
-        <Image
-          src={headerImg}
-          alt="IronFuel"
-          className={classes["header-img"]}
-        />
+        <Link href="/">
+          <Image
+            src={headerImg}
+            alt="IronFuel"
+            className={classes["header-img"]}
+          />
+        </Link>
+
         <div className={classes["toggle"]}>
           <button className={classes["toggle-button"]} onClick={handleToggle}>
             <span className={classes["toggle-button__bar"]}></span>
@@ -32,7 +38,7 @@ export default function Header() {
           <li>Accesorios</li>
           <li>
             <button className={classes["nav-items__button"]}>
-              Mi carro (0)
+              Mi carro ({totalQuantity})
             </button>
           </li>
         </ul>

@@ -1,0 +1,50 @@
+.productos {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  list-style: none;
+}
+@media (max-width: 83rem) {
+  .productos {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+@media (max-width: 66rem) {
+  .productos {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (max-width: 49rem) {
+  .productos {
+    grid-template-columns: 1fr;
+  }
+}
+.producto {
+  display: flex;
+  justify-content: center;
+  margin: 1rem;
+}
+.producto:hover {
+  cursor: pointer;
+  transform: scale(1.01);
+  box-shadow: rgba(0, 0, 0, 0.6) 0px 8px 25px;
+}
+.indices ul {
+  display: flex;
+  justify-content: end;
+  list-style: none;
+}
+.indices button {
+  background: none;
+  border: none;
+  margin: 0.5rem;
+  font-size: 1rem;
+  font-family: "Montserrat";
+  color: #96de37;
+  cursor: pointer;
+}
+.indices button:hover {
+  color: #75ad2c;
+}
+.active {
+  color: white !important;
+}

@@ -1,0 +1,66 @@
+.card {
+  position: relative;
+  background-color: #1d1d1d;
+  display: flex;
+  flex-direction: column;
+  z-index: -1;
+
+  color: white;
+  margin: 0rem;
+  height: 20rem;
+
+  width: 15rem;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  overflow: hidden;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: rgba(0, 0, 0, 0.6) 0px 8px 25px;
+  z-index: 10;
+}
+
+.sale-badge {
+  position: absolute;
+  background-color: #96de37;
+  width: 140px;
+  text-align: center;
+  color: #1d1d1d;
+  font-weight: bold;
+  font-size: 25px;
+  transform: rotateZ(-45deg) translateY(-10) translateX(-39);
+}
+.card-txt {
+  height: 40%;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+}
+.card h3 {
+  color: #96de37;
+  text-align: center;
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+.card-img {
+  border-bottom: 2px solid #96de37;
+  height: 60%;
+}
+.card-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.card-price {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+.card-price__disabled {
+  text-decoration: line-through;
+  color: #527a1d;
+}

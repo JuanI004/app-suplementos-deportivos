@@ -4,14 +4,16 @@ import titleImg from "../public/images/ironfuel-title.png";
 import img1 from "../public/images/why-choose-us1.png";
 import img2 from "../public/images/why-choose-us2.jpg";
 import img3 from "../public/images/why-choose-us3.jpg";
+import Link from "next/link";
 
 export default function Home() {
   return (
     <>
       <div className={styles.banner}>
         <Image src={titleImg} alt="IronFuel" className={styles["banner-img"]} />
-
-        <button>Ver nuestro catálogo</button>
+        <Link href="/catalogo">
+          <button>Ver nuestro catálogo</button>
+        </Link>
       </div>
       <div className={styles.search}>
         <h1>Encuentra tu suplemento ideal</h1>

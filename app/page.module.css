@@ -31,6 +31,9 @@
   font-family: "Montserrat", sans-serif;
   border: none;
   border-radius: 10px;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 }
 .banner button:hover {
   background: #96de37;
@@ -41,12 +44,16 @@
     rgba(103, 153, 38, 1) 100%
   );
   cursor: pointer;
+  cursor: pointer;
+  transform: scale(1.04);
+  box-shadow: rgba(0, 0, 0, 0.6) 0px 8px 25px;
 }
 .search {
   padding: 4rem;
   display: flex;
   flex-direction: column;
   align-items: center;
+  background: white;
 }
 .search-bar {
   display: flex;
