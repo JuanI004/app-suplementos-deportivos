@@ -5,7 +5,7 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 0.3rem 2rem;
+  padding: 1rem 2rem;
   font-size: 1rem;
   position: fixed;
   width: 100vw;
@@ -21,13 +21,122 @@
   font-size: 1rem;
   font-family: "Montserrat", sans-serif;
 }
+.nav-items li:hover {
+  color: #c5c5c5;
+  cursor: pointer;
+}
 .nav-items__button {
-  color: #bfec3c;
+  color: #a6f33f;
   font-weight: bold;
   background: none;
   border: none;
 }
 .nav-items__button:hover {
-  color: #728a29;
+  color: #78b32d;
   cursor: pointer;
+}
+.header-img {
+  width: 200px;
+  height: auto;
+  object-fit: contain;
+}
+.toggle {
+  padding: 0.5rem;
+}
+.toggle:hover,
+.toggle:active {
+  background-color: #1d1d1d;
+  padding: 0.5rem;
+  border-radius: 5px;
+}
+.toggle-button {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 24px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.toggle-button__bar {
+  width: 100%;
+  height: 3px;
+  background-color: white;
+  border-radius: 2px;
+}
+@media (max-width: 50rem) {
+  .nav-items {
+    display: none;
+  }
+  .toggle-button {
+    display: flex;
+  }
+}
+.mobile-nav {
+  padding-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-size: 2rem;
+  position: fixed;
+  z-index: 2;
+  background: #1d1d1d;
+  height: 100vh;
+  width: 80vw;
+}
+.mobile-nav__items {
+  margin: 3rem auto;
+
+  list-style: none;
+}
+.mobile-nav__item {
+  margin-bottom: 1rem;
+}
+.mobile-nav__item a {
+  font-size: 2rem;
+  font-weight: bold;
+  color: white;
+  text-decoration: none;
+
+  width: 100%;
+}
+.close-button {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.close-button svg {
+  display: block;
+}
+.mobile-nav__item--cta a {
+  color: #a6f33f;
+  font-size: 2rem;
+  font-weight: bold;
+  text-decoration: none;
+}
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+}
+.mobile-nav__img {
+  width: 200px;
+  height: auto;
+  object-fit: contain;
+  align-self: center;
+  margin: 3rem auto;
 }

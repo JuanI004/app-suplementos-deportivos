@@ -10,13 +10,18 @@
   align-items: center;
   color: white;
 }
+.banner-img {
+  width: 60vw;
+  height: auto;
+  object-fit: contain;
+}
 .banner button {
-  background: rgba(191, 236, 60, 1);
+  background: #a6f33f;
   background: linear-gradient(
     179deg,
-    rgba(191, 236, 60, 1) 0%,
-    rgba(158, 194, 50, 1) 50%,
-    rgba(114, 138, 41, 1) 100%
+    rgba(166, 243, 63, 1) 0%,
+    rgba(147, 217, 56, 1) 50%,
+    rgba(120, 179, 45, 1) 100%
   );
   color: white;
   padding: 1rem;
@@ -28,12 +33,12 @@
   border-radius: 10px;
 }
 .banner button:hover {
-  background: #728a29;
+  background: #96de37;
   background: linear-gradient(
     179deg,
-    rgba(114, 138, 41, 1) 0%,
-    rgba(84, 99, 26, 1) 50%,
-    rgba(42, 56, 15, 1) 100%
+    rgba(150, 222, 55, 1) 0%,
+    rgba(128, 189, 49, 1) 50%,
+    rgba(103, 153, 38, 1) 100%
   );
   cursor: pointer;
 }
@@ -75,22 +80,97 @@
   border: none;
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
-  background: rgb(174, 214, 54);
+  background: #a6f33f;
+  background: linear-gradient(
+    179deg,
+    rgba(166, 243, 63, 1) 0%,
+    rgba(147, 217, 56, 1) 50%,
+    rgba(120, 179, 45, 1) 100%
+  );
   cursor: pointer;
 }
 .search-bar button:hover {
-  background: #728a29;
+  background: #96de37;
   background: linear-gradient(
     179deg,
-    rgba(114, 138, 41, 1) 0%,
-    rgba(84, 99, 26, 1) 50%,
-    rgba(42, 56, 15, 1) 100%
+    rgba(150, 222, 55, 1) 0%,
+    rgba(128, 189, 49, 1) 50%,
+    rgba(103, 153, 38, 1) 100%
   );
 }
-@media (min-widht: 40rem) {
-  .search {
-    margin: 4rem;
-  }
-}
+
 .why-choose-us {
+  background: black;
+  color: white;
+  padding: 4rem 0;
+}
+
+.why-choose-us h1 {
+  text-align: center;
+  padding-bottom: 3rem;
+  color: #96de37;
+  font-size: 2.5rem;
+}
+
+.why-choose-us__items {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.why-choose-us__items li {
+  padding: 3rem 2rem;
+}
+
+.why-choose-us__items li h3 {
+  color: #96de37;
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+  text-align: center;
+}
+
+.why-choose-us__highlighted {
+  background: #1d1d1d;
+  color: white;
+  margin: 2rem 0;
+}
+
+.why-choose-us__highlighted h3 {
+  color: #96de37;
+}
+
+.why-choose-us__item {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.why-choose-us__item p {
+  flex: 1;
+  line-height: 1.6;
+  font-size: 1.2rem;
+  text-align: justify;
+}
+
+.why-choose-us__item img {
+  width: 300px;
+  height: auto;
+  object-fit: cover;
+  border-radius: 10px;
+  flex-shrink: 0;
+}
+@media (max-width: 60rem) {
+  .why-choose-us__item {
+    flex-direction: column;
+  }
+  .why-choose-us__item img {
+    width: 80vw;
+  }
+  .banner-img {
+    width: 90vw;
+  }
 }
