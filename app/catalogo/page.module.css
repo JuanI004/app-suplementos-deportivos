@@ -23,10 +23,22 @@
   justify-content: center;
   margin: 1rem;
 }
+.producto a {
+  text-decoration: none;
+  outline: none;
+  display: block;
+}
+
+.producto a:focus {
+  outline: none;
+}
+
+.producto a:focus-visible {
+  outline: none;
+}
 .producto:hover {
   cursor: pointer;
   transform: scale(1.01);
-  box-shadow: rgba(0, 0, 0, 0.6) 0px 8px 25px;
 }
 .indices ul {
   display: flex;

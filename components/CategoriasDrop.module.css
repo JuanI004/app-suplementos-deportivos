@@ -1,0 +1,48 @@
+.categoria {
+  display: flex;
+  background: none;
+  color: white;
+  font-family: "Montserrat";
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 1rem 0.3rem;
+}
+.categoria:hover {
+  background-color: black;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-bottom: 2px solid #96de37;
+}
+.categoria svg {
+  justify-self: flex-end;
+  transition: transform 0.3s ease-out;
+}
+.up {
+  transform: rotate(180deg);
+}
+.subcategorias {
+  background: black;
+  border-top: 2px solid #96de37;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+.subcategoria {
+  width: 190.65px;
+  display: flex;
+  background: none;
+  color: white;
+  font-family: "Montserrat";
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  text-align: left;
+  font-size: 1rem;
+  padding: 1rem 1rem;
+}
+.subcategoria:hover {
+  color: #96de37;
+}

@@ -4,11 +4,9 @@
   display: flex;
   flex-direction: column;
   z-index: -1;
-
   color: white;
   margin: 0rem;
   height: 20rem;
-
   width: 15rem;
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
@@ -17,6 +15,7 @@
     transform 0.3s ease,
     box-shadow 0.3s ease;
 }
+
 .card:hover {
   transform: scale(1.05);
   box-shadow: rgba(0, 0, 0, 0.6) 0px 8px 25px;
@@ -33,12 +32,18 @@
   font-size: 25px;
   transform: rotateZ(-45deg) translateY(-10) translateX(-39);
 }
+.card-stock {
+  background: black;
+  padding: 0.4rem;
+  border-radius: 10px;
+  font-weight: bold;
+}
 .card-txt {
   height: 40%;
   padding: 1rem;
   display: flex;
   flex-direction: column;
-
+  justify-content: center;
   align-items: center;
 }
 .card h3 {

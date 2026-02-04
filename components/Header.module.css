@@ -78,16 +78,17 @@
   }
 }
 .mobile-nav {
-  padding-top: 2rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   font-size: 2rem;
   position: fixed;
+  margin-top: 3.6rem;
   z-index: 2;
   background: #1d1d1d;
-  height: 100vh;
+  height: calc(100vh - 3.6rem);
   width: 80vw;
+  max-width: 396px;
 }
 .mobile-nav__items {
   margin: 3rem auto;
@@ -117,6 +118,9 @@
   align-items: center;
   justify-content: center;
 }
+.close-button:hover {
+  transform: scale(1.05);
+}
 
 .close-button svg {
   display: block;
@@ -142,4 +146,9 @@
   object-fit: contain;
   align-self: center;
   margin: 3rem auto;
+}
+@media (min-width: 50rem) {
+  .mobile-nav {
+    display: none;
+  }
 }

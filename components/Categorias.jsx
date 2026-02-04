@@ -1,91 +1,30 @@
+"use client";
+import CategoriasDrop from "./CategoriaDrop";
 import classes from "./Categorias.module.css";
-export default function Categorias() {
+import { CATEGORIAS } from "@/utils/data";
+import Filtros from "./Filtros";
+
+export default function Categorias({ handleClick }) {
   return (
     <>
+      <div className={classes.mobile}>
+        <button onClick={handleClick}>
+          <h2>Ver Categorias </h2>
+        </button>
+      </div>
+
       <div className={classes.categorias}>
         <h2>Categorias</h2>
-        <ul>
-          <li>
-            <button className={classes.categoria}>
-              <h3>Suplementos</h3>
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 16 16"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M4 6L8 10L12 6"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </button>
-          </li>
-          <li>
-            <button className={classes.categoria}>
-              <h3>Vitaminas</h3>
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 16 16"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M4 6L8 10L12 6"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </button>
-          </li>
-          <li>
-            <button className={classes.categoria}>
-              <h3>Accesorios</h3>
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 16 16"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M4 6L8 10L12 6"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </button>
-          </li>
-        </ul>
+        {CATEGORIAS.map((cat) => (
+          <CategoriasDrop key={cat.id} idCat={cat.id} title={cat.nombre} />
+        ))}
       </div>
       <div className={classes.marcas}>
-        <button>
-          <h3>Marcas</h3>
-          <svg
-            width="16"
-            height="16"
-            viewBox="0 0 16 16"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M4 6L8 10L12 6"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-        </button>
+        <CategoriasDrop title="Marcas" esMarca />
+      </div>
+      <div className={classes.filtrar}>
+        <p>Ordenar por: </p>
+        <Filtros />
       </div>
     </>
   );

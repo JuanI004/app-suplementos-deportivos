@@ -1,6 +1,14 @@
+"use client";
 import Categorias from "@/components/Categorias";
 import classes from "./layout.module.css";
+import { useState } from "react";
+import MobileModal from "@/components/MobileModal";
+
 export default function CatalogoLayout({ children }) {
+  const [isOpen, setIsOpen] = useState(false);
+  function handleClick() {
+    setIsOpen((prev) => !prev);
+  }
   return (
     <div className={classes.content}>
       <div className={classes.header}>
@@ -43,8 +51,16 @@ export default function CatalogoLayout({ children }) {
       </div>
 
       <div className={classes.side}>
-        <Categorias />
+        <Categorias handleClick={handleClick} />
       </div>
+      {isOpen && (
+        <>
+          <div className={classes.backdrop}></div>
+          <div className={classes.modal}>
+            <MobileModal handleClick={handleClick} />
+          </div>
+        </>
+      )}
       <div className={classes.main}>{children}</div>
     </div>
   );

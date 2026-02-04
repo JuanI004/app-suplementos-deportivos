@@ -16,7 +16,10 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={montserrat.className}>
         <ReduxProvider>
-          <Header />
+          <div className="header">
+            <Header />
+          </div>
+
           {children}
           <div className="footer">
             <Footer />

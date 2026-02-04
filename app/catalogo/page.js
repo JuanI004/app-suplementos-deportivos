@@ -1,10 +1,11 @@
 "use client";
 import ProductoCard from "@/components/ProductoCard";
 import { DUMMY_PRODUCTS } from "@/utils/data";
-import Image from "next/image";
+
 import { useState } from "react";
 let PROD_X_PAG = 10;
 import classes from "./page.module.css";
+import Link from "next/link";
 let menor = "<";
 let mayor = ">";
 export default function Catalogo() {
@@ -30,7 +31,9 @@ export default function Catalogo() {
           {productos.map((prod) => {
             return (
               <li key={prod.id} className={classes.producto}>
-                <ProductoCard prod={prod} />
+                <Link href={`/catalogo/${prod.id}`}>
+                  <ProductoCard prod={prod} />
+                </Link>
               </li>
             );
           })}

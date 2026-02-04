@@ -26,14 +26,17 @@ body {
   grid-area: side;
   position: fixed;
   width: 25vw;
-  max-width: 260px;
+  max-width: 245px;
+  height: calc(100vh - 3.6rem);
   z-index: 10;
   margin-top: 3.6rem;
   padding-top: 3rem;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .main {
@@ -45,6 +48,9 @@ body {
   border-top-left-radius: 10px;
   background-color: #444444;
   padding: 2rem;
+  box-shadow:
+    rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,
+    rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
 }
 
 .search-bar {
@@ -61,6 +67,10 @@ body {
   box-sizing: border-box;
   height: 56px;
   margin: 0;
+  box-shadow:
+    rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+    rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
 }
 
 .search-bar input {
@@ -99,9 +109,65 @@ body {
     rgba(103, 153, 38, 1) 100%
   );
 }
+.modal {
+  background: #1d1d1d;
+  position: fixed;
+  margin-top: 3.6rem;
+  height: calc(100vh - 3.6rem);
+  width: 60vw;
+  z-index: 20;
+  display: flex;
+  justify-content: center;
+  padding: 3rem;
+  max-width: 270px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 15;
+}
 @media (min-width: 1400px) {
   .main {
     border-right: 2px solid #a6f33f;
     border-top-right-radius: 10px;
+  }
+}
+@media (max-width: 49rem) {
+  .header {
+    border-bottom: 2px solid #96de37;
+    box-shadow:
+      rgba(0, 0, 0, 0.25) 0px 14px 28px,
+      rgba(0, 0, 0, 0.22) 0px 10px 10px;
+  }
+  .main {
+    border-radius: 0;
+    border-left: none;
+  }
+  .content {
+    grid-template-columns: 1fr;
+    grid-template-rows: 0.5fr 0.3fr 9.2fr;
+    grid-template-areas:
+      "hd"
+      "side"
+      "main";
+  }
+  .side {
+    position: static;
+    height: 100%;
+    width: 100%;
+    margin-top: 0;
+    padding-top: 0;
+    justify-content: center;
+  }
+}
+@media (min-width: 50rem) {
+  .modal {
+    display: none;
   }
 }
