@@ -14,6 +14,7 @@
   width: 60vw;
   height: auto;
   object-fit: contain;
+  max-width: 1400px;
 }
 .banner button {
   background: #a6f33f;
@@ -37,7 +38,8 @@
     rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
   transition:
     transform 0.3s ease,
-    box-shadow 0.3s ease;
+    box-shadow 0.3s ease,
+    background 0.3s ease;
 }
 .banner button:hover {
   background: #96de37;
@@ -66,6 +68,7 @@
   align-items: center;
   padding: 3rem;
   width: 100%;
+  max-width: 1400px;
 }
 
 .search-bar input,

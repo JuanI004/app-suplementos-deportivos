@@ -1,0 +1,78 @@
+.carro {
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+}
+.agregar-carro {
+  padding: 0.4rem;
+  width: 10rem;
+  font-weight: bold;
+  font-size: 0.9rem;
+  font-family: "Montserrat", sans-serif;
+  color: white;
+  background: #96de37;
+  background: linear-gradient(
+    179deg,
+    rgb(141, 207, 53) 0%,
+    rgb(110, 161, 42) 50%,
+    rgb(93, 138, 36) 100%
+  );
+  border: none;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-radius: 10px;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    background 0.3s ease;
+}
+.agregar-carro:hover {
+  transform: scale(1.05);
+  box-shadow: rgba(0, 0, 0, 0.6) 0px 8px 25px;
+  z-index: 10;
+  background: linear-gradient(
+    179deg,
+    rgb(119, 177, 44) 0%,
+    rgb(101, 148, 39) 50%,
+    rgb(76, 112, 28) 100%
+  );
+  cursor: pointer;
+}
+.cant {
+  align-self: center;
+  display: flex;
+  justify-content: center;
+  height: 2rem;
+  width: 7rem;
+  margin-bottom: 0.5rem;
+  border: 3px solid #353535;
+  border-radius: 10px;
+}
+.cant button {
+  background: white;
+  border: none;
+  width: 2rem;
+  font-size: 1.3rem;
+  font-weight: bold;
+  font-family: "Montserrat", sans-serif;
+  color: #353535;
+}
+.cant button:hover {
+  background: rgb(201, 200, 200);
+  cursor: pointer;
+}
+.inc {
+  border-top-right-radius: 7px;
+  border-bottom-right-radius: 7px;
+}
+.dec {
+  border-top-left-radius: 7px;
+  border-bottom-left-radius: 7px;
+}
+.cant p {
+  width: 4rem;
+  text-align: center;
+  border-left: 3px solid #353535;
+  border-right: 3px solid #353535;
+  font-size: 1.3rem;
+  background: white;
+}

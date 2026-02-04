@@ -16,17 +16,19 @@ body {
   grid-area: hd;
   color: white;
   margin-top: 3.6rem;
+
   padding: 3rem;
   text-align: center;
   position: relative;
   z-index: 10;
+  max-width: calc(1400px - 245px);
 }
 
 .side {
   grid-area: side;
   position: fixed;
   width: 25vw;
-  max-width: 245px;
+  max-width: 350px;
   height: calc(100vh - 3.6rem);
   z-index: 10;
   margin-top: 3.6rem;
@@ -45,6 +47,8 @@ body {
   z-index: 1;
   border-left: 2px solid #a6f33f;
   border-top: 2px solid #a6f33f;
+  max-width: calc(1400px - 245px);
+
   border-top-left-radius: 10px;
   background-color: #444444;
   padding: 2rem;
@@ -169,5 +173,10 @@ body {
 @media (min-width: 50rem) {
   .modal {
     display: none;
+  }
+}
+@media (min-width: 105rem) {
+  .side {
+    max-width: 250px;
   }
 }
