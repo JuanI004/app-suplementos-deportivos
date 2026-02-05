@@ -3,17 +3,17 @@
   grid-template-columns: 1fr 1fr 1fr 1fr;
   list-style: none;
 }
-@media (max-width: 83rem) {
+@media (max-width: 105rem) {
   .productos {
     grid-template-columns: 1fr 1fr 1fr;
   }
 }
-@media (max-width: 66rem) {
+@media (max-width: 70rem) {
   .productos {
     grid-template-columns: 1fr 1fr;
   }
 }
-@media (max-width: 49rem) {
+@media (max-width: 51rem) {
   .productos {
     grid-template-columns: 1fr;
   }
@@ -22,6 +22,9 @@
   display: flex;
   justify-content: center;
   margin: 1rem;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 }
 .producto a {
   text-decoration: none;
@@ -38,7 +41,7 @@
 }
 .producto:hover {
   cursor: pointer;
-  transform: scale(1.01);
+  transform: scale(1.05);
 }
 .indices ul {
   display: flex;

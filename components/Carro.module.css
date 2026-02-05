@@ -1,0 +1,134 @@
+.cart {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 80vw;
+  max-height: 80vh;
+  overflow-y: auto;
+  border-radius: 10px;
+  transform: translate(-50%, -55%);
+  color: white;
+  background: #1d1d1d;
+  margin-top: 3.6rem;
+  padding: 2rem;
+  z-index: 100;
+  box-shadow: rgba(0, 0, 0, 0.5) 0px 10px 50px;
+  max-width: 677;
+}
+.cart h1 {
+  color: #96de37;
+  padding-bottom: 2rem;
+}
+.cart-items {
+  list-style: none;
+}
+.cart-item {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  margin-bottom: 1rem;
+  border-radius: 10px;
+  padding: 1rem;
+  box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
+  transition: transform 0.3s ease;
+}
+.cart-item:hover {
+  transform: scale(1.05);
+}
+.cart-item a {
+  text-decoration: none;
+  color: #96de37;
+}
+.cart-item a:hover {
+  color: #699b28;
+}
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+}
+.cart img {
+  height: 100px;
+  width: auto;
+  border-radius: 10px;
+}
+.cart h3 {
+  color: #96de37;
+}
+.cart-total {
+  align-self: center;
+}
+.cart-total h1 {
+  text-align: center;
+}
+.close-button {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.close-button:hover {
+  color: rgb(160, 158, 158);
+  transform: scale(1.05);
+}
+.cart-finalizar {
+  align-self: center;
+  width: 60vw;
+  max-width: 316px;
+  background: #a6f33f;
+  background: linear-gradient(
+    179deg,
+    rgba(166, 243, 63, 1) 0%,
+    rgba(147, 217, 56, 1) 50%,
+    rgba(120, 179, 45, 1) 100%
+  );
+  color: white;
+  padding: 1rem;
+  font-size: 15px;
+  margin-top: 2rem;
+  font-weight: bold;
+  font-family: "Montserrat", sans-serif;
+  border: none;
+  border-radius: 10px;
+  box-shadow:
+    rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+    rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+    rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    background 0.3s ease;
+}
+.cart-finalizar:hover {
+  background: #96de37;
+  background: linear-gradient(
+    179deg,
+    rgba(150, 222, 55, 1) 0%,
+    rgba(128, 189, 49, 1) 50%,
+    rgba(103, 153, 38, 1) 100%
+  );
+  cursor: pointer;
+  cursor: pointer;
+  transform: scale(1.04);
+  box-shadow: rgba(0, 0, 0, 0.6) 0px 8px 25px;
+}
+.close-button svg {
+  display: block;
+}
+@media (max-width: 49rem) {
+  .cart-item {
+    flex-direction: column;
+  }
+}

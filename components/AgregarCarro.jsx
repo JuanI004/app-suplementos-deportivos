@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import classes from "./AgregarCarro.module.css";
+import Cantidad from "./Cantidad";
 
 export default function AgregarCarro({ stock }) {
   const [cantidad, setCantidad] = useState(1);
@@ -23,15 +24,11 @@ export default function AgregarCarro({ stock }) {
   }
   return (
     <div className={classes["carro"]}>
-      <div className={classes["cant"]}>
-        <button onClick={handleDecCarro} className={classes["dec"]}>
-          -
-        </button>
-        <p>{cantidad}</p>
-        <button onClick={handleIncCarro} className={classes["inc"]}>
-          +
-        </button>
-      </div>
+      <Cantidad
+        cantidad={cantidad}
+        handleIncCarro={handleIncCarro}
+        handleDecCarro={handleDecCarro}
+      />
       <button className={classes["agregar-carro"]}>
         <p>Agregar al carrito</p>
         <svg

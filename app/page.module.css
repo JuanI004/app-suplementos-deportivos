@@ -172,6 +172,7 @@
 
 .why-choose-us__item img {
   width: 300px;
+  max-width: 400px;
   height: auto;
   object-fit: cover;
   border-radius: 10px;

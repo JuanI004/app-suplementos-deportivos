@@ -6,12 +6,17 @@ import logo from "../public/images/ironfuel-header.png";
 import { useState } from "react";
 import Link from "next/link";
 import { useSelector } from "react-redux";
+import Carro from "./Carro";
 
 export default function Header() {
   const [navIsOpen, setNavIsOpen] = useState(false);
+  const [cartIsOpen, setCartIsOpen] = useState(false);
   const totalQuantity = useSelector((state) => state.totalQuantity);
   function handleToggle() {
     setNavIsOpen((prev) => !prev);
+  }
+  function handleToggleCart() {
+    setCartIsOpen((prev) => !prev);
   }
   return (
     <>
@@ -37,7 +42,10 @@ export default function Header() {
           <li>Vitaminas</li>
           <li>Accesorios</li>
           <li>
-            <button className={classes["nav-items__button"]}>
+            <button
+              className={classes["nav-items__button"]}
+              onClick={handleToggleCart}
+            >
               Mi carro ({totalQuantity})
             </button>
           </li>
@@ -74,7 +82,14 @@ export default function Header() {
                 <a href="customers/index.html">Accesorios</a>
               </li>
               <li className={classes["mobile-nav__item--cta"]}>
-                <a href="start-hosting/index.html">Mi carro (0)</a>
+                <a
+                  onClick={() => {
+                    handleToggle();
+                    handleToggleCart();
+                  }}
+                >
+                  Mi carro (0)
+                </a>
               </li>
             </ul>
             <Image
@@ -85,6 +100,7 @@ export default function Header() {
           </nav>
         </>
       )}
+      {cartIsOpen && <Carro handleToggle={handleToggleCart} />}
     </>
   );
 }

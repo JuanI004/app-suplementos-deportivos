@@ -4,16 +4,31 @@
 
   padding: 3rem 0;
 }
-.prod img {
-  align-self: center;
-  height: 350px;
-  width: auto;
+.volver {
+  color: #74ac2a;
+  font-weight: bold;
+  text-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  text-decoration: none;
+  background: #1d1d1d;
+  padding: 0.6rem;
   border-radius: 10px;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  margin-right: 2rem;
-  margin-bottom: 2rem;
-  max-width: 350;
+  box-shadow:
+    rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset,
+    rgba(0, 0, 0, 0.15) 0px -36px 30px 0px inset,
+    rgba(0, 0, 0, 0.1) 0px -79px 40px 0px inset,
+    rgba(0, 0, 0, 0.06) 0px 2px 1px,
+    rgba(0, 0, 0, 0.09) 0px 4px 2px,
+    rgba(0, 0, 0, 0.09) 0px 8px 4px,
+    rgba(0, 0, 0, 0.09) 0px 16px 8px,
+    rgba(0, 0, 0, 0.09) 0px 32px 16px;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 }
+.volver:hover {
+  color: #5b8621;
+}
+
 .prod-info {
   display: flex;
   flex-direction: column;
@@ -49,7 +64,9 @@
   margin-bottom: 1.5rem;
   border-bottom: 2px solid #2e2e2e;
 }
-
+.prod-stock {
+  color: #74ac2a;
+}
 @media (max-width: 63rem) {
   .cats {
     grid-template-columns: 110px 110px;
@@ -71,8 +88,10 @@
 }
 
 .cat__badge {
+  text-align: center;
   display: flex;
   width: 110px;
+  height: 30px;
   justify-content: center;
   align-items: center;
   background: #74ac2a;

@@ -1,0 +1,40 @@
+.cant {
+  align-self: center;
+  display: flex;
+  justify-content: center;
+  height: 2rem;
+  width: 7rem;
+
+  border: 3px solid #353535;
+  border-radius: 10px;
+}
+.cant button {
+  background: white;
+  border: none;
+  width: 2rem;
+  font-size: 1.3rem;
+  font-weight: bold;
+  font-family: "Montserrat", sans-serif;
+  color: #353535;
+}
+.cant button:hover {
+  background: rgb(201, 200, 200);
+  cursor: pointer;
+}
+.inc {
+  border-top-right-radius: 7px;
+  border-bottom-right-radius: 7px;
+}
+.dec {
+  border-top-left-radius: 7px;
+  border-bottom-left-radius: 7px;
+}
+.cant p {
+  width: 4rem;
+  text-align: center;
+  border-left: 3px solid #353535;
+  border-right: 3px solid #353535;
+  font-size: 1.3rem;
+  background: white;
+  color: #353535;
+}

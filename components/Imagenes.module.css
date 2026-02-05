@@ -1,0 +1,48 @@
+.imagen {
+  align-self: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 2rem;
+  margin-bottom: 2rem;
+  height: 350px;
+  width: 350px;
+  position: relative;
+}
+.imagen img {
+  height: 350px;
+  width: auto;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+  max-width: 350px;
+}
+.imagen button {
+  height: 25px;
+  width: 25px;
+
+  position: absolute;
+  cursor: pointer;
+  background: none;
+  color: #96de37;
+  background: #5c5c5ccb;
+  border: none;
+  border-radius: 50%;
+  font-size: 25px;
+  font-family: "Montserrat", sans-serif;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  transition: transform 0.3s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.imagen button:hover {
+  transform: scale(1.1);
+  background: #2a2a2a;
+}
+.sig {
+  right: 320px;
+}
+.ant {
+  left: 320px;
+}

@@ -23,10 +23,13 @@
 .nav-items li {
   font-size: 1rem;
   font-family: "Montserrat", sans-serif;
+  transition: transform 0.3s ease;
 }
 .nav-items li:hover {
-  color: #c5c5c5;
+  color: #ffffff;
   cursor: pointer;
+  transform: scale(1.05);
+  text-shadow: #ffffff 0px 7px 29px 0px;
 }
 .nav-items__button {
   color: #a6f33f;
@@ -37,6 +40,7 @@
 .nav-items__button:hover {
   color: #78b32d;
   cursor: pointer;
+  text-shadow: #96de37 0px 7px 29px 0px;
 }
 .header-img {
   width: 200px;
@@ -92,20 +96,21 @@
 }
 .mobile-nav__items {
   margin: 3rem auto;
-
+  padding-top: 2rem;
   list-style: none;
 }
 .mobile-nav__item {
   margin-bottom: 1rem;
 }
 .mobile-nav__item a {
-  font-size: 2rem;
+  font-size: 1.7rem;
   font-weight: bold;
   color: white;
   text-decoration: none;
 
   width: 100%;
 }
+
 .close-button {
   position: absolute;
   top: 1.5rem;
@@ -127,9 +132,10 @@
 }
 .mobile-nav__item--cta a {
   color: #a6f33f;
-  font-size: 2rem;
+  font-size: 1.7rem;
   font-weight: bold;
   text-decoration: none;
+  cursor: pointer;
 }
 .backdrop {
   position: fixed;
