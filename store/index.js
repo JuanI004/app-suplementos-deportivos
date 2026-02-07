@@ -1,5 +1,9 @@
 "use client";
 import { configureStore } from "@reduxjs/toolkit";
 import cartSlice from "./slices/cart-slice.js";
-const store = configureStore({ reducer: cartSlice.reducer });
+const store = configureStore({
+  reducer: {
+    cart: cartSlice.reducer,
+  },
+});
 export default store;

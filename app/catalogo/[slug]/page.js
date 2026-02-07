@@ -5,8 +5,8 @@ import AgregarCarro from "@/components/AgregarCarro";
 import Link from "next/link";
 export default async function PagProducto({ params }) {
   const { slug } = await params;
-  let prod = DUMMY_PRODUCTS.find((item) => item.id == slug);
-  let precio = prod.price;
+  const prod = DUMMY_PRODUCTS.find((item) => item.id == slug);
+  let precio = prod.precio;
   if (prod.descuento) {
     precio = ((prod.precio * (100 - prod.porcentajeDescuento)) / 100).toFixed(
       2,
@@ -45,7 +45,7 @@ export default async function PagProducto({ params }) {
                   <h2 className={classes["prod-price"]}>${precio}</h2>
                 </div>
               )}
-              <AgregarCarro stock={prod.stock} />
+              <AgregarCarro stock={prod.stock} item={prod} />
             </>
           ) : (
             <h2 className={classes["prod-stock"]}>Sin Stock</h2>

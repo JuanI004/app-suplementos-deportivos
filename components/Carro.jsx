@@ -1,33 +1,40 @@
+"use client";
 import placeholderImg from "@/public/images/placeholder.jpg";
 import Image from "next/image";
 import classes from "./Carro.module.css";
 import Link from "next/link";
 import Cantidad from "./Cantidad";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { cartActions } from "@/store/slices/cart-slice";
+
 export default function Carro({ handleToggle }) {
-  let cantidad1 = 3;
-  let precio1 = "76.49";
-  let cantidad2 = 1;
-  let precio2 = "89.99";
-  let cantidad3 = 2;
-  let precio3 = "71.99";
-
-  //   function handleIncCarro() {
-  //     setCantidad((prev) => {
-  //       if (prev < stock) {
-  //         return prev + 1;
-  //       }
-  //       return prev;
-  //     });
-  //   }
-
-  //   function handleDecCarro() {
-  //     setCantidad((prev) => {
-  //       if (prev > 1) {
-  //         return prev - 1;
-  //       }
-  //       return prev;
-  //     });
-  //   }
+  const dispatch = useDispatch();
+  const cartItems = useSelector((state) => state.cart.items);
+  const precioTotal = cartItems.reduce((total, item) => {
+    let precio = item.precio;
+    if (item.descuento) {
+      precio = (item.precio * (100 - item.porcentajeDescuento)) / 100;
+    }
+    return total + precio * item.quantity;
+  }, 0);
+  function handleIncCarro(item) {
+    dispatch(
+      cartActions.addItemToCart({
+        id: item.id,
+        quantity: 1,
+        nombre: item.nombre,
+        imagen: item.imagen,
+        precio: item.precio,
+        descuento: item.descuento,
+        porcentajeDescuento: item.porcentajeDescuento,
+        stock: item.stock,
+      }),
+    );
+  }
+  function handleDecCarro(item) {
+    dispatch(cartActions.removeItemToCart(item.id));
+  }
   return (
     <>
       <div className={classes.backdrop}></div>
@@ -49,49 +56,51 @@ export default function Carro({ handleToggle }) {
           </svg>
         </button>
         <h1>Mi carro</h1>
-        <ul className={classes["cart-items"]}>
-          <li className={classes["cart-item"]}>
-            <Image src={placeholderImg} alt="imagen" />
-            <Link href="/catalogo/1" onClick={handleToggle}>
-              Whey Protein Isolate Chocolate
-            </Link>
-            <h2>${precio1}</h2>
-            <Cantidad cantidad={cantidad1} />
-            <div>
-              <h3>Subtotal</h3>
-              <h2>${(cantidad1 * precio1).toFixed(2)}</h2>
+        {cartItems.length === 0 ? (
+          <p style={{ color: "white", textAlign: "center", padding: "2rem" }}>
+            Tu carrito está vacío
+          </p>
+        ) : (
+          <>
+            <ul className={classes["cart-items"]}>
+              {cartItems.map((item) => {
+                let precio = item.precio;
+                if (item.descuento) {
+                  precio = (
+                    (item.precio * (100 - item.porcentajeDescuento)) /
+                    100
+                  ).toFixed(2);
+                }
+
+                return (
+                  <li key={item.id} className={classes["cart-item"]}>
+                    <Image src={placeholderImg} alt="imagen" />
+                    <Link href={`/catalogo/${item.id}`} onClick={handleToggle}>
+                      {item.nombre}
+                    </Link>
+                    <h2>${precio}</h2>
+                    <Cantidad
+                      cantidad={item.quantity}
+                      handleIncCarro={() => handleIncCarro(item)}
+                      handleDecCarro={() => handleDecCarro(item)}
+                    />
+                    <div>
+                      <h3>Subtotal</h3>
+                      <h2>${(item.quantity * precio).toFixed(2)}</h2>
+                    </div>
+                  </li>
+                );
+              })}
+            </ul>
+            <div className={classes["cart-total"]}>
+              <h2>Precio Total:</h2>
+              <h1>${precioTotal.toFixed(2)}</h1>
             </div>
-          </li>
-          <li className={classes["cart-item"]}>
-            <Image src={placeholderImg} alt="imagen" />
-            <Link href="/catalogo/2" onClick={handleToggle}>
-              Whey Protein Isolate Vainilla
-            </Link>
-            <h2>${precio2}</h2>
-            <Cantidad cantidad={cantidad2} />
-            <div>
-              <h3>Subtotal</h3>
-              <h2>${(cantidad2 * precio2).toFixed(2)}</h2>
-            </div>
-          </li>
-          <li className={classes["cart-item"]}>
-            <Image src={placeholderImg} alt="imagen" />
-            <Link href="/catalogo/4" onClick={handleToggle}>
-              Proteina Vegana de Guisante y Arroz
-            </Link>
-            <h2>${precio3}</h2>
-            <Cantidad cantidad={cantidad3} />
-            <div>
-              <h3>Subtotal</h3>
-              <h2>${(cantidad3 * precio3).toFixed(2)}</h2>
-            </div>
-          </li>
-        </ul>
-        <div className={classes["cart-total"]}>
-          <h2>Precio Total:</h2>
-          <h1>$463,45</h1>
-        </div>
-        <button className={classes["cart-finalizar"]}>Finalizar Compra</button>
+            <button className={classes["cart-finalizar"]}>
+              Finalizar Compra
+            </button>
+          </>
+        )}
       </div>
     </>
   );

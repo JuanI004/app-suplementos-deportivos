@@ -11,7 +11,7 @@ import Carro from "./Carro";
 export default function Header() {
   const [navIsOpen, setNavIsOpen] = useState(false);
   const [cartIsOpen, setCartIsOpen] = useState(false);
-  const totalQuantity = useSelector((state) => state.totalQuantity);
+  const totalQuantity = useSelector((state) => state.cart.totalQuantity);
   function handleToggle() {
     setNavIsOpen((prev) => !prev);
   }

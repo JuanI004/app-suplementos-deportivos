@@ -2,8 +2,11 @@
 import { useState } from "react";
 import classes from "./AgregarCarro.module.css";
 import Cantidad from "./Cantidad";
+import { useDispatch } from "react-redux";
+import { cartActions } from "@/store/slices/cart-slice";
 
-export default function AgregarCarro({ stock }) {
+export default function AgregarCarro({ stock, item }) {
+  const dispatch = useDispatch();
   const [cantidad, setCantidad] = useState(1);
   function handleIncCarro() {
     setCantidad((prev) => {
@@ -22,6 +25,21 @@ export default function AgregarCarro({ stock }) {
       return prev;
     });
   }
+  function handleAddToCart() {
+    dispatch(
+      cartActions.addItemToCart({
+        id: item.id,
+        quantity: cantidad,
+        nombre: item.nombre,
+        imagen: item.imagen,
+        precio: item.precio,
+        descuento: item.descuento,
+        porcentajeDescuento: item.porcentajeDescuento,
+        stock: item.stock,
+      }),
+    );
+    setCantidad(1);
+  }
   return (
     <div className={classes["carro"]}>
       <Cantidad
@@ -29,7 +47,7 @@ export default function AgregarCarro({ stock }) {
         handleIncCarro={handleIncCarro}
         handleDecCarro={handleDecCarro}
       />
-      <button className={classes["agregar-carro"]}>
+      <button className={classes["agregar-carro"]} onClick={handleAddToCart}>
         <p>Agregar al carrito</p>
         <svg
           width="22"
