@@ -3,7 +3,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-right: 2rem;
+
   margin-bottom: 2rem;
   height: 350px;
   width: 350px;
@@ -45,4 +45,19 @@
 }
 .ant {
   left: 320px;
+}
+@media (max-width: 30rem) {
+  .imagen {
+    height: 250px;
+    width: 250px;
+  }
+  .imagen img {
+    height: 250px;
+  }
+  .sig {
+    right: 225px;
+  }
+  .ant {
+    left: 225px;
+  }
 }

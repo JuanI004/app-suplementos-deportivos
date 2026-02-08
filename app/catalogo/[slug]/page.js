@@ -31,6 +31,9 @@ export default async function PagProducto({ params }) {
             <div className={classes["cat__badge"]}>
               <p>{prod.vegano ? "Vegano" : "No Vegano"}</p>
             </div>
+            <div className={classes["cat__badge"]}>
+              <p>{prod.marca}</p>
+            </div>
           </div>
           <p className={classes["prod-desc"]}>{prod.descripcion}</p>
           {prod.stock !== 0 ? (

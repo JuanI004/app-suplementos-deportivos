@@ -55,3 +55,9 @@
 .close-button:hover {
   transform: scale(1.05);
 }
+.mobile-categorias a {
+  text-decoration: none;
+}
+.mobile-marcas a {
+  text-decoration: none;
+}

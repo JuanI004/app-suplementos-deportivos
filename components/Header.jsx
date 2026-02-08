@@ -38,9 +38,15 @@ export default function Header() {
         </div>
 
         <ul className={classes["nav-items"]}>
-          <li>Suplementos</li>
-          <li>Vitaminas</li>
-          <li>Accesorios</li>
+          <li>
+            <Link href="/catalogo?cat=Suplementos">Suplementos</Link>
+          </li>
+          <li>
+            <Link href="/catalogo?cat=Vitaminas">Vitaminas</Link>
+          </li>
+          <li>
+            <Link href="/catalogo?cat=Accesorios">Accesorios</Link>
+          </li>
           <li>
             <button
               className={classes["nav-items__button"]}
@@ -73,13 +79,19 @@ export default function Header() {
             </button>
             <ul className={classes["mobile-nav__items"]}>
               <li className={classes["mobile-nav__item"]}>
-                <a href="packages/index.html">Suplementos</a>
+                <Link href="/catalogo?cat=Suplementos" onClick={handleToggle}>
+                  Suplementos
+                </Link>
               </li>
               <li className={classes["mobile-nav__item"]}>
-                <a href="customers/index.html">Vitaminas</a>
+                <Link href="/catalogo?cat=Vitaminas" onClick={handleToggle}>
+                  Vitaminas
+                </Link>
               </li>
               <li className={classes["mobile-nav__item"]}>
-                <a href="customers/index.html">Accesorios</a>
+                <Link href="/catalogo?cat=Accesorios" onClick={handleToggle}>
+                  Accesorios
+                </Link>
               </li>
               <li className={classes["mobile-nav__item--cta"]}>
                 <a

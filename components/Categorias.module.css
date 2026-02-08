@@ -52,7 +52,7 @@
   color: #699c27;
 }
 
-@media (max-width: 49rem) {
+@media (max-width: 52rem) {
   .categorias,
   .marcas,
   .filtrar {
@@ -61,4 +61,10 @@
   .mobile {
     display: flex;
   }
+}
+.categorias a {
+  text-decoration: none;
+}
+.marcas a {
+  text-decoration: none;
 }

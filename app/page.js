@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 import styles from "./page.module.css";
 import titleImg from "../public/images/ironfuel-title.png";
@@ -5,6 +6,7 @@ import img1 from "../public/images/why-choose-us1.png";
 import img2 from "../public/images/why-choose-us2.jpg";
 import img3 from "../public/images/why-choose-us3.jpg";
 import Link from "next/link";
+import BarraBusqueda from "@/components/BarraBusqueda";
 
 export default function Home() {
   return (
@@ -17,41 +19,7 @@ export default function Home() {
       </div>
       <div className={styles.search}>
         <h1>Encuentra tu suplemento ideal</h1>
-        <form className={styles["search-bar"]}>
-          <input
-            type="text"
-            id="searchBar"
-            name="searchBar"
-            placeholder="Buscar suplementos (ej: proteína whey, creatina...)"
-          />
-          <button type="button">
-            <svg
-              width="20"
-              height="20"
-              viewBox="0 0 20 20"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <circle
-                cx="8"
-                cy="8"
-                r="6"
-                stroke="white"
-                strokeWidth="2"
-                fill="none"
-              />
-              <line
-                x1="12.5"
-                y1="12.5"
-                x2="18"
-                y2="18"
-                stroke="white"
-                strokeWidth="2"
-                strokeLinecap="round"
-              />
-            </svg>
-          </button>
-        </form>
+        <BarraBusqueda />
       </div>
       <div className={styles["why-choose-us"]}>
         <h1>¿Por qué elegir IronFuel?</h1>

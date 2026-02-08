@@ -1,6 +1,7 @@
 "use client";
 import classes from "./CategoriasDrop.module.css";
 import { SUBCATEGORIAS, MARCAS } from "@/utils/data";
+import Link from "next/link";
 import { useState } from "react";
 export default function CategoriasDrop({ title, idCat, esMarca }) {
   const [dropIsClicked, setDropIsClicked] = useState(false);
@@ -38,14 +39,29 @@ export default function CategoriasDrop({ title, idCat, esMarca }) {
           />
         </svg>
       </button>
-      <div className={classes.subcategorias}>
-        {dropIsClicked &&
-          subcategorias.map((subcat) => (
-            <button key={subcat.id} className={classes.subcategoria}>
-              <h3>{subcat.nombre}</h3>
-            </button>
-          ))}
-      </div>
+      {!esMarca ? (
+        <div className={classes.subcategorias}>
+          {dropIsClicked &&
+            subcategorias.map((subcat) => (
+              <Link key={subcat.id} href={`/catalogo?subcat=${subcat.nombre}`}>
+                <button className={classes.subcategoria}>
+                  <h3>{subcat.nombre}</h3>
+                </button>
+              </Link>
+            ))}
+        </div>
+      ) : (
+        <div className={classes.subcategorias}>
+          {dropIsClicked &&
+            subcategorias.map((subcat) => (
+              <Link key={subcat.id} href={`/catalogo?marca=${subcat.nombre}`}>
+                <button className={classes.subcategoria}>
+                  <h3>{subcat.nombre}</h3>
+                </button>
+              </Link>
+            ))}
+        </div>
+      )}
     </>
   );
 }
