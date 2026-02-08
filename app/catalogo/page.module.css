@@ -63,3 +63,54 @@
 .active {
   color: white !important;
 }
+.noResultados {
+  height: calc(100vh - 17rem - 9.75rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.noResultados p {
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.4rem;
+  color: white;
+  padding-bottom: 1rem;
+}
+.noResultados button {
+  background: #a6f33f;
+  background: linear-gradient(
+    179deg,
+    rgba(166, 243, 63, 1) 0%,
+    rgba(147, 217, 56, 1) 50%,
+    rgba(120, 179, 45, 1) 100%
+  );
+  color: white;
+  padding: 1rem;
+  font-size: 15px;
+  font-weight: bold;
+  font-family: "Montserrat", sans-serif;
+  border: none;
+  border-radius: 10px;
+  box-shadow:
+    rgba(0, 0, 0, 0.25) 0px 54px 55px,
+    rgba(0, 0, 0, 0.12) 0px -12px 30px,
+    rgba(0, 0, 0, 0.12) 0px 4px 6px,
+    rgba(0, 0, 0, 0.17) 0px 12px 13px,
+    rgba(0, 0, 0, 0.09) 0px -3px 5px;
+  transition:
+    transform 0.3s ease,
+    background 0.3s ease;
+}
+.noResultados button:hover {
+  background: #96de37;
+  background: linear-gradient(
+    179deg,
+    rgba(150, 222, 55, 1) 0%,
+    rgba(128, 189, 49, 1) 50%,
+    rgba(103, 153, 38, 1) 100%
+  );
+  cursor: pointer;
+  cursor: pointer;
+  transform: scale(1.04);
+}

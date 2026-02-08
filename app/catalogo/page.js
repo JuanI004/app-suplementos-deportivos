@@ -14,6 +14,7 @@ export default function Catalogo() {
   const subcategoriaParams = searchParams.get("subcat");
   const marcaParams = searchParams.get("marca");
   const busquedaParams = searchParams.get("search");
+  const precioParams = searchParams.get("precio");
   const [pagActual, setPagActual] = useState(1);
 
   const productosFiltrados = useMemo(() => {
@@ -50,9 +51,36 @@ export default function Catalogo() {
     if (marcaParams != null) {
       resultado = resultado.filter((item) => item.marca === marcaParams);
     }
-
+    if (precioParams != null) {
+      resultado = [...resultado].sort((a, b) => {
+        let precioA = a.precio;
+        let precioB = b.precio;
+        if (a.descuento) {
+          precioA = ((a.precio * (100 - a.porcentajeDescuento)) / 100).toFixed(
+            2,
+          );
+        }
+        if (b.descuento) {
+          precioB = ((b.precio * (100 - b.porcentajeDescuento)) / 100).toFixed(
+            2,
+          );
+        }
+        if (precioParams === "ba") {
+          return precioA - precioB;
+        } else if (precioParams === "ab") {
+          return precioB - precioA;
+        }
+        return 0;
+      });
+    }
     return resultado;
-  }, [categoriaParams, subcategoriaParams, marcaParams, busquedaParams]);
+  }, [
+    categoriaParams,
+    subcategoriaParams,
+    marcaParams,
+    busquedaParams,
+    precioParams,
+  ]);
   useEffect(() => {
     setPagActual(1);
   }, [categoriaParams, subcategoriaParams]);
@@ -72,43 +100,58 @@ export default function Catalogo() {
   }
   return (
     <>
-      <div>
-        <ul className={classes.productos}>
-          {productos.map((prod) => {
-            return (
-              <li key={prod.id} className={classes.producto}>
-                <Link href={`/catalogo/${prod.id}`}>
-                  <ProductoCard prod={prod} />
-                </Link>
-              </li>
-            );
-          })}
-        </ul>
-      </div>
-      <div className={classes.indices}>
-        <ul>
-          {pagActual !== 1 && (
-            <li>
-              <button onClick={handleDecClick}>{"<"}</button>
-            </li>
-          )}
-          {numeros.map((index) => (
-            <li key={index}>
-              <button
-                onClick={() => handlePageClick(index)}
-                className={pagActual === index ? classes.active : undefined}
-              >
-                {index}
-              </button>
-            </li>
-          ))}
-          {pagActual !== numTotal && (
-            <li>
-              <button onClick={handleIncClick}>{">"}</button>
-            </li>
-          )}
-        </ul>
-      </div>
+      {productos.length === 0 ? (
+        <div className={classes.noResultados}>
+          <p>
+            {busquedaParams
+              ? `No se encontraron productos para "${busquedaParams}"`
+              : "No se encontraron productos con estos filtros"}
+          </p>
+          <Link href="/catalogo">
+            <button>Ver todos los productos</button>
+          </Link>
+        </div>
+      ) : (
+        <>
+          <div>
+            <ul className={classes.productos}>
+              {productos.map((prod) => {
+                return (
+                  <li key={prod.id} className={classes.producto}>
+                    <Link href={`/catalogo/${prod.id}`}>
+                      <ProductoCard prod={prod} />
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+          <div className={classes.indices}>
+            <ul>
+              {pagActual !== 1 && (
+                <li>
+                  <button onClick={handleDecClick}>{"<"}</button>
+                </li>
+              )}
+              {numeros.map((index) => (
+                <li key={index}>
+                  <button
+                    onClick={() => handlePageClick(index)}
+                    className={pagActual === index ? classes.active : undefined}
+                  >
+                    {index}
+                  </button>
+                </li>
+              ))}
+              {pagActual !== numTotal && (
+                <li>
+                  <button onClick={handleIncClick}>{">"}</button>
+                </li>
+              )}
+            </ul>
+          </div>
+        </>
+      )}
     </>
   );
 }

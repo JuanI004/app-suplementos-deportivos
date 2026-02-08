@@ -1,18 +1,38 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import classes from "./Filtros.module.css";
+import { useSearchParams, usePathname } from "next/navigation";
+import Link from "next/link";
 export default function Filtros() {
+  const searchParams = useSearchParams();
+  const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
-  const [selected, setSelected] = useState("ORDENAR POR PRECIO");
+  const ordenActual = searchParams.get("precio");
+  const [selected, setSelected] = useState(
+    ordenActual === "ba"
+      ? "ORDENAR POR PRECIO: BAJO A ALTO"
+      : ordenActual === "ab"
+        ? "ORDENAR POR PRECIO: ALTO A BAJO"
+        : "ORDENAR POR PRECIO",
+  );
   const options = [
-    "ORDENAR POR PRECIO",
-    "ORDENAR POR PRECIO: BAJO A ALTO",
-    "ORDENAR POR PRECIO: ALTO A BAJO",
+    { id: "ba", item: "ORDENAR POR PRECIO: BAJO A ALTO" },
+    { id: "ab", item: "ORDENAR POR PRECIO: ALTO A BAJO" },
   ];
+  function construirUrl(id) {
+    const params = new URLSearchParams(searchParams.toString());
+    params.set("precio", id);
+    return `${pathname}?${params.toString()}`;
+  }
   const handleClick = (option) => {
-    setSelected(option);
+    setSelected(option.item);
     setIsOpen(false);
   };
+  useEffect(() => {
+    if (!ordenActual) {
+      setSelected("ORDENAR POR PRECIO");
+    }
+  }, [ordenActual]);
   return (
     <div className={classes.filtros}>
       <button
@@ -30,7 +50,12 @@ export default function Filtros() {
               onClick={() => handleClick(option)}
               className={classes["filtro"]}
             >
-              {option}
+              <Link
+                onClick={() => handleClick(option)}
+                href={construirUrl(option.id)}
+              >
+                {option.item}
+              </Link>
             </li>
           ))}
         </ul>

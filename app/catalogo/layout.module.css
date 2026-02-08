@@ -48,6 +48,7 @@ body {
   border-left: 2px solid #a6f33f;
   border-top: 2px solid #a6f33f;
   max-width: calc(1400px - 245px);
+  min-height: calc(100vh - 17rem - 9.75rem);
 
   border-top-left-radius: 10px;
   background-color: #444444;
