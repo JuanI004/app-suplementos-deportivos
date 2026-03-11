@@ -1,5 +1,5 @@
 "use client";
-import placeholderImg from "@/public/images/placeholder.jpg";
+import placeholderImg from "@/public/images/placeholder.webp";
 import Image from "next/image";
 import classes from "./Carro.module.css";
 import Link from "next/link";
@@ -45,24 +45,24 @@ export default function Carro({ handleToggle }) {
     <>
       <div className={classes.backdrop}></div>
       <div className={classes.cart}>
+        <button className={classes["close-button"]} onClick={handleToggle}>
+          <svg
+            width="32"
+            height="32"
+            viewBox="0 0 32 32"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M25 7L7 25M7 7L25 25"
+              stroke="white"
+              strokeWidth="3"
+              strokeLinecap="round"
+            />
+          </svg>
+        </button>
         {!toggleFinalizar ? (
           <>
-            <button className={classes["close-button"]} onClick={handleToggle}>
-              <svg
-                width="32"
-                height="32"
-                viewBox="0 0 32 32"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M25 7L7 25M7 7L25 25"
-                  stroke="white"
-                  strokeWidth="3"
-                  strokeLinecap="round"
-                />
-              </svg>
-            </button>
             <h1>Mi carro</h1>
             {cartItems.length === 0 ? (
               <p
@@ -119,7 +119,10 @@ export default function Carro({ handleToggle }) {
             )}
           </>
         ) : (
-          <FinalizarCompra precioTotal={precioTotal} />
+          <FinalizarCompra
+            precioTotal={precioTotal}
+            handleToggle={handleToggle}
+          />
         )}
       </div>
     </>

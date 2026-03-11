@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import Image from "next/image";
-import placeholderImg from "@/public/images/placeholder.jpg";
+import placeholderImg from "@/public/images/placeholder.webp";
 import infoNutricional from "@/public/images/info-nutricional.png";
 import classes from "./Imagenes.module.css";
 let mayor = ">";

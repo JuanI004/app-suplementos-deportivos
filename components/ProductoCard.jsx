@@ -1,5 +1,5 @@
 import classes from "./ProductoCard.module.css";
-import placeholderImg from "@/public/images/placeholder.jpg";
+import placeholderImg from "@/public/images/placeholder.webp";
 import Image from "next/image";
 export default function ProductoCard({ prod }) {
   let precio = prod.price;

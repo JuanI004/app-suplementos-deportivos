@@ -22,7 +22,7 @@ export default function MobileModal({ handleClick }) {
         </svg>
       </button>
       <div className={classes["mobile-categorias"]}>
-        <h2>Categorias</h2>
+        <h2>Categorías</h2>
         {CATEGORIAS.map((cat) => (
           <CategoriasDrop key={cat.id} idCat={cat.id} title={cat.nombre} />
         ))}

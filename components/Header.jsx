@@ -1,8 +1,8 @@
 "use client";
 import Image from "next/image";
 import classes from "./Header.module.css";
-import headerImg from "../public/images/ironfuel-header.png";
-import logo from "../public/images/ironfuel-header.png";
+import headerImg from "../public/images/ironfuel-header.webp";
+
 import { useState } from "react";
 import Link from "next/link";
 import { useSelector } from "react-redux";
@@ -105,7 +105,7 @@ export default function Header() {
               </li>
             </ul>
             <Image
-              src={logo}
+              src={headerImg}
               alt="ironFuel logo"
               className={classes["mobile-nav__img"]}
             />

@@ -1,15 +1,16 @@
 .banner {
   background:
     linear-gradient(to top, rgba(0, 0, 000, 0.7) 10%, transparent),
-    url("../public/images/banner-img.png") center / cover no-repeat border-box;
+    url("../public/images/banner-img.webp") center / cover no-repeat border-box;
   width: 100vw;
-  height: 80vh;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   color: white;
 }
+
 .banner-img {
   width: 60vw;
   height: auto;
@@ -24,14 +25,16 @@
     rgba(147, 217, 56, 1) 50%,
     rgba(120, 179, 45, 1) 100%
   );
-  color: white;
+  color: black;
+  text-transform: uppercase;
+  font-weight: 800;
   padding: 1rem;
+  padding: 1rem 3rem;
   font-size: 15px;
   margin-top: 2rem;
-  font-weight: bold;
   font-family: "Montserrat", sans-serif;
   border: none;
-  border-radius: 10px;
+  border-radius: 25px;
   box-shadow:
     rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
     rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
@@ -54,25 +57,65 @@
   transform: scale(1.04);
   box-shadow: rgba(0, 0, 0, 0.6) 0px 8px 25px;
 }
+
 .search {
   padding: 4rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   background: white;
+  position: relative;
 }
-
+.search::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #96de37, transparent);
+}
 .why-choose-us {
+  position: relative;
   background: black;
   color: white;
-  padding: 4rem 0;
+  padding-top: 4rem;
+  opacity: 1;
+  background-image:
+    linear-gradient(#0f0f0f 1px, transparent 1px),
+    linear-gradient(to right, #0f0f0f 1px, #000 1px);
+  background-size: 80px 80px;
 }
 
 .why-choose-us h1 {
   text-align: center;
+  text-transform: uppercase;
+  font-weight: 800;
   padding-bottom: 3rem;
   color: #96de37;
   font-size: 2.5rem;
+  position: relative;
+}
+
+.why-choose-us h2 {
+  position: absolute;
+  font-size: 5.5rem;
+  font-weight: 900;
+  color: #96de371e;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  top: 40px;
+  right: 40px;
+}
+
+.why-choose-us h1::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 3px;
+  background: #96de37;
+  margin: 0.8rem auto 3.5rem;
+  border-radius: 2px;
 }
 
 .why-choose-us__items {
@@ -81,21 +124,30 @@
   margin: 0;
 }
 
-.why-choose-us__items li {
+.why-choose-us__items li:not(.why-choose-us__highlighted) {
   padding: 3rem 2rem;
+  background-color: #1d1d1d7a;
+}
+.why-choose-us__items li:not(.why-choose-us__highlighted):hover {
+  border-left: 2px solid #96de37;
+  background-color: #1d1d1da9;
 }
 
 .why-choose-us__items li h3 {
   color: #96de37;
   margin-bottom: 1.5rem;
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   text-align: center;
+  text-transform: uppercase;
 }
 
 .why-choose-us__highlighted {
+  padding: 3rem 2rem;
+  border-top: 3px solid #292929;
+  border-bottom: 3px solid #292929;
   background: #1d1d1d;
   color: white;
-  margin: 2rem 0;
+  margin: 0;
 }
 
 .why-choose-us__highlighted h3 {
@@ -126,10 +178,21 @@
   object-fit: cover;
   border-radius: 10px;
   flex-shrink: 0;
+  transition:
+    transform 0.3s ease,
+    clip-path 0.3s ease;
+  clip-path: polygon(0 0, 94% 0, 100% 6%, 100% 100%, 6% 100%, 0 94%);
+}
+.why-choose-us__item img:hover {
+  transform: scale(1.05);
+  clip-path: none;
 }
 @media (max-width: 60rem) {
   .why-choose-us__item {
     flex-direction: column;
+  }
+  .why-choose-us__items li:hover {
+    border-left: none;
   }
   .why-choose-us__item img {
     width: 80vw;
@@ -137,4 +200,26 @@
   .banner-img {
     width: 90vw;
   }
+}
+.reveal-right {
+  opacity: 0;
+  transform: translateX(80px);
+  transition:
+    opacity 0.7s ease,
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 0.3s ease;
+}
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-80px);
+  transition:
+    opacity 0.7s ease,
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 0.3s ease;
+}
+
+.reveal-right.visible,
+.reveal-left.visible {
+  opacity: 1;
+  transform: translateX(0);
 }

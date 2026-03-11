@@ -1,14 +1,42 @@
 "use client";
 import Image from "next/image";
 import styles from "./page.module.css";
-import titleImg from "../public/images/ironfuel-title.png";
-import img1 from "../public/images/why-choose-us1.png";
-import img2 from "../public/images/why-choose-us2.jpg";
-import img3 from "../public/images/why-choose-us3.jpg";
+import titleImg from "../public/images/ironfuel-title.webp";
+import img1 from "../public/images/why-choose-us1.webp";
+import img2 from "../public/images/why-choose-us2.webp";
+import img3 from "../public/images/why-choose-us3.webp";
 import Link from "next/link";
 import BarraBusqueda from "@/components/BarraBusqueda";
+import { useEffect, useRef, useState } from "react";
+
+function useScrollReveal(options = {}) {
+  const ref = useRef(null);
+  const [isVisible, setIsVisible] = useState(false);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.unobserve(el);
+        }
+      },
+      {
+        threshold: options.threshold ?? 0.5,
+        rootMargin: options.rootMargin ?? "0px",
+      },
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+  return { ref, isVisible };
+}
 
 export default function Home() {
+  const { ref: ref1, isVisible: visible1 } = useScrollReveal();
+  const { ref: ref2, isVisible: visible2 } = useScrollReveal();
+  const { ref: ref3, isVisible: visible3 } = useScrollReveal();
   return (
     <>
       <div className={styles.banner}>
@@ -24,8 +52,14 @@ export default function Home() {
       <div className={styles["why-choose-us"]}>
         <h1>¿Por qué elegir IronFuel?</h1>
         <ul className={styles["why-choose-us__items"]}>
-          <li>
+          <li
+            className={
+              styles["reveal-right"] + " " + (visible1 ? styles["visible"] : "")
+            }
+            ref={ref1}
+          >
             <h3>Calidad Garantizada</h3>
+            <h2>01</h2>
             <div className={styles["why-choose-us__item"]}>
               <p>
                 Nuestros suplementos cumplen con los más altos estándares de
@@ -42,8 +76,18 @@ export default function Home() {
               <Image src={img1} alt="" />
             </div>
           </li>
-          <li className={styles["why-choose-us__highlighted"]}>
+          <li
+            ref={ref2}
+            className={
+              styles["why-choose-us__highlighted"] +
+              " " +
+              (visible2 ? styles["visible"] : "") +
+              " " +
+              styles["reveal-left"]
+            }
+          >
             <h3>Marcas de Renombre Mundial</h3>
+            <h2>02</h2>
             <div className={styles["why-choose-us__item"]}>
               <Image src={img2} alt="" />
               <p>
@@ -59,8 +103,14 @@ export default function Home() {
               </p>
             </div>
           </li>
-          <li>
+          <li
+            ref={ref3}
+            className={
+              styles["reveal-right"] + " " + (visible3 ? styles["visible"] : "")
+            }
+          >
             <h3>Miles de Clientes Satisfechos</h3>
+            <h2>03</h2>
             <div className={styles["why-choose-us__item"]}>
               <p>
                 Nuestra comunidad de clientes satisfechos es nuestro mejor aval.

@@ -1,8 +1,11 @@
 "use client";
 import Link from "next/link";
 import classes from "./FinalizarCompras.module.css";
+import { useDispatch } from "react-redux";
+import { cartActions } from "@/store/slices/cart-slice";
 import { useState } from "react";
-export default function FinalizarCompra({ precioTotal }) {
+export default function FinalizarCompra({ precioTotal, handleToggle }) {
+  const dispatch = useDispatch();
   const [errores, setErrores] = useState({});
   const [pedidoExitoso, setPedidoExitoso] = useState(false);
   const [formData, setFormData] = useState({
@@ -68,28 +71,28 @@ export default function FinalizarCompra({ precioTotal }) {
       return;
     }
     setPedidoExitoso(true);
-    if (pedidoExitoso) {
-      return (
-        <div>
+    dispatch(cartActions.clearCart());
+  }
+  if (pedidoExitoso) {
+    return (
+      <div className={classes.finalizar}>
+        <div className={classes["pedido-exitoso"]}>
           <h2>¡Pedido realizado con éxito!</h2>
           <p>Recibirás un email de confirmación a {formData.email}</p>
           <p>Total: ${precioTotal.toFixed(2)}</p>
-          <button>
-            <Link href="/">Volver al inicio</Link>
-          </button>
         </div>
-      );
-    }
+      </div>
+    );
   }
   return (
     <div className={classes.finalizar}>
       <h2>Finalizar Compra</h2>
-      <p>Total a pagar: ${precioTotal.toFixed(2)}</p>
-      <form onSubmit={handleSubmit} className={classes.form}>
-        <div>
+      <p className={classes.total}>Total a pagar: ${precioTotal.toFixed(2)}</p>
+      <form onSubmit={handleSubmit} className={classes["finalizar-form"]}>
+        <div className={classes["finalizar-section"]}>
           <h3>Información Personal</h3>
           <div>
-            <div>
+            <div className={classes["finalizar-input"]}>
               <label htmlFor="nombre">Nombre *</label>
               <input
                 type="text"
@@ -98,9 +101,13 @@ export default function FinalizarCompra({ precioTotal }) {
                 value={formData.nombre}
                 onChange={handleChange}
               />
-              {errores.nombre && <span>{errores.nombre}</span>}
+              {errores.nombre && (
+                <span className={classes["finalizar-error"]}>
+                  {errores.nombre}
+                </span>
+              )}
             </div>
-            <div>
+            <div className={classes["finalizar-input"]}>
               <label htmlFor="apellido">Apellido *</label>
               <input
                 type="text"
@@ -109,11 +116,15 @@ export default function FinalizarCompra({ precioTotal }) {
                 value={formData.apellido}
                 onChange={handleChange}
               />
-              {errores.apellido && <span>{errores.apellido}</span>}
+              {errores.apellido && (
+                <span className={classes["finalizar-error"]}>
+                  {errores.apellido}
+                </span>
+              )}
             </div>
           </div>
           <div>
-            <div>
+            <div className={classes["finalizar-input"]}>
               <label htmlFor="email">Email *</label>
               <input
                 type="email"
@@ -122,9 +133,13 @@ export default function FinalizarCompra({ precioTotal }) {
                 value={formData.email}
                 onChange={handleChange}
               />
-              {errores.email && <span>{errores.email}</span>}
+              {errores.email && (
+                <span className={classes["finalizar-error"]}>
+                  {errores.email}
+                </span>
+              )}
             </div>
-            <div>
+            <div className={classes["finalizar-input"]}>
               <label htmlFor="telefono">Teléfono *</label>
               <input
                 type="tel"
@@ -133,13 +148,17 @@ export default function FinalizarCompra({ precioTotal }) {
                 value={formData.telefono}
                 onChange={handleChange}
               />
-              {errores.telefono && <span>{errores.telefono}</span>}
+              {errores.telefono && (
+                <span className={classes["finalizar-error"]}>
+                  {errores.telefono}
+                </span>
+              )}
             </div>
           </div>
         </div>
-        <div>
+        <div className={classes["finalizar-section"]}>
           <h3>Dirección de Envío</h3>
-          <div>
+          <div className={classes["finalizar-input"]}>
             <label htmlFor="direccion">Dirección *</label>
             <input
               type="text"
@@ -149,10 +168,14 @@ export default function FinalizarCompra({ precioTotal }) {
               value={formData.direccion}
               onChange={handleChange}
             />
-            {errores.direccion && <span>{errores.direccion}</span>}
+            {errores.direccion && (
+              <span className={classes["finalizar-error"]}>
+                {errores.direccion}
+              </span>
+            )}
           </div>
           <div>
-            <div>
+            <div className={classes["finalizar-input"]}>
               <label htmlFor="ciudad">Ciudad *</label>
               <input
                 type="text"
@@ -161,9 +184,13 @@ export default function FinalizarCompra({ precioTotal }) {
                 value={formData.ciudad}
                 onChange={handleChange}
               />
-              {errores.ciudad && <span>{errores.ciudad}</span>}
+              {errores.ciudad && (
+                <span className={classes["finalizar-error"]}>
+                  {errores.ciudad}
+                </span>
+              )}
             </div>
-            <div>
+            <div className={classes["finalizar-input"]}>
               <label htmlFor="departamento">Departamento *</label>
               <input
                 type="text"
@@ -172,9 +199,13 @@ export default function FinalizarCompra({ precioTotal }) {
                 value={formData.departamento}
                 onChange={handleChange}
               />
-              {errores.departamento && <span>{errores.departamento}</span>}
+              {errores.departamento && (
+                <span className={classes["finalizar-error"]}>
+                  {errores.departamento}
+                </span>
+              )}
             </div>
-            <div>
+            <div className={classes["finalizar-input"]}>
               <label htmlFor="codigoPostal">Código Postal *</label>
               <input
                 type="text"
@@ -183,13 +214,17 @@ export default function FinalizarCompra({ precioTotal }) {
                 value={formData.codigoPostal}
                 onChange={handleChange}
               />
-              {errores.codigoPostal && <span>{errores.codigoPostal}</span>}
+              {errores.codigoPostal && (
+                <span className={classes["finalizar-error"]}>
+                  {errores.codigoPostal}
+                </span>
+              )}
             </div>
           </div>
         </div>
-        <div>
+        <div className={classes["finalizar-section"]}>
           <h3>Método de Pago</h3>
-          <div>
+          <div className={classes["finalizar-pago"]}>
             <label htmlFor="metodoPago">Selecciona un método *</label>
             <select
               id="metodoPago"
@@ -203,9 +238,9 @@ export default function FinalizarCompra({ precioTotal }) {
             </select>
           </div>
         </div>
-        <div>
+        <div className={classes["finalizar-section"]}>
           <h3>Notas adicionales (opcional)</h3>
-          <div>
+          <div className={classes["finalizar-notas"]}>
             <textarea
               id="notas"
               name="notas"
@@ -216,7 +251,16 @@ export default function FinalizarCompra({ precioTotal }) {
             />
           </div>
         </div>
-        <button type="submit">Confirmar Pedido</button>
+        <button
+          type="submit"
+          className={
+            Object.keys(errores).length > 0
+              ? classes["desactivado"]
+              : classes["finalizar-boton"]
+          }
+        >
+          Confirmar Pedido
+        </button>
       </form>
     </div>
   );
