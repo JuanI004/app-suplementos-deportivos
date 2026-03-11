@@ -13,6 +13,8 @@
   margin-bottom: 2rem;
   background-color: #1d1d1d;
   padding: 0.8rem;
+  text-transform: uppercase;
+  font-size: 1.4rem;
   border-radius: 20px;
   box-shadow:
     rgba(0, 0, 0, 0.17) 0px -23px 25px 0px inset,
@@ -52,9 +54,17 @@
   color: #699c27;
 }
 
+.sectionTitle {
+  color: #686868;
+  padding: 1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
 @media (max-width: 52rem) {
   .categorias,
   .marcas,
+  .sectionTitle,
   .filtrar {
     display: none;
   }

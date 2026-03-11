@@ -14,6 +14,7 @@
 .mobile-categorias h2 {
   color: #96de37;
   margin-bottom: 2rem;
+  text-transform: uppercase;
   background-color: #1d1d1d;
   padding: 0.8rem;
   border-radius: 20px;
@@ -42,8 +43,8 @@
 }
 .close-button {
   position: absolute;
-  top: 1.5rem;
-  right: 1.5rem;
+  top: 2rem;
+  right: 1rem;
   background: transparent;
   border: none;
   cursor: pointer;
@@ -51,9 +52,22 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: transform 0.3s ease;
+}
+.sectionTitle {
+  color: #686868;
+  padding: 1rem;
+  font-weight: 700;
+  text-transform: uppercase;
 }
 .close-button:hover {
-  transform: scale(1.05);
+  transform: rotate(90deg);
+  background-color: #363636;
+  padding: 0.5rem;
+  border-radius: 100%;
+}
+.close-button svg {
+  display: block;
 }
 .mobile-categorias a {
   text-decoration: none;

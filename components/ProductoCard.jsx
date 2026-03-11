@@ -1,8 +1,9 @@
 import classes from "./ProductoCard.module.css";
 import placeholderImg from "@/public/images/placeholder.webp";
 import Image from "next/image";
+
 export default function ProductoCard({ prod }) {
-  let precio = prod.price;
+  let precio = prod.precio;
   if (prod.descuento) {
     precio = ((prod.precio * (100 - prod.porcentajeDescuento)) / 100).toFixed(
       2,
@@ -11,7 +12,11 @@ export default function ProductoCard({ prod }) {
 
   return (
     <div className={classes.card}>
-      {prod.descuento && <div className={classes["sale-badge"]}>SALE</div>}
+      {prod.descuento && (
+        <div className={classes["sale-badge"]}>
+          -{prod.porcentajeDescuento}%
+        </div>
+      )}
       <div className={classes["card-img"]}>
         <Image src={placeholderImg} alt={prod.nombre} />
       </div>

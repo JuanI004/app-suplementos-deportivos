@@ -2,23 +2,27 @@
   align-self: center;
   display: flex;
   justify-content: center;
+  align-items: center;
   height: 2rem;
-  width: 7rem;
-
-  border: 3px solid #353535;
-  border-radius: 10px;
+  width: 6rem;
+  border: 1px solid #141414;
+  border-radius: 7px;
+  transition: border 0.2s ease;
+}
+.cant:hover {
+  border-color: #5da00075;
 }
 .cant button {
-  background: white;
+  background: #141414;
   border: none;
   width: 2rem;
-  font-size: 1.3rem;
-  font-weight: bold;
+  height: 2rem;
+  font-size: 1rem;
   font-family: "Montserrat", sans-serif;
-  color: #353535;
+  color: white;
 }
 .cant button:hover {
-  background: rgb(201, 200, 200);
+  background: #070c0075;
   cursor: pointer;
 }
 .inc {
@@ -30,11 +34,14 @@
   border-bottom-left-radius: 7px;
 }
 .cant p {
-  width: 4rem;
+  height: 2rem;
+  padding-top: 0.3rem;
+  width: 2.5rem;
+  font-weight: bold;
   text-align: center;
-  border-left: 3px solid #353535;
-  border-right: 3px solid #353535;
-  font-size: 1.3rem;
-  background: white;
-  color: #353535;
+  border-left: 1px solid #353535;
+  border-right: 1px solid #353535;
+  font-size: 1rem;
+  background: #141414;
+  color: white;
 }

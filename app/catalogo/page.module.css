@@ -31,6 +31,10 @@
   outline: none;
   display: block;
 }
+.producto a:hover {
+  border: 1px solid #598520;
+  border-radius: 10px;
+}
 
 .producto a:focus {
   outline: none;
