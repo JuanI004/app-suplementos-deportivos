@@ -13,7 +13,7 @@
   cursor: pointer;
 }
 .filtros-btn:hover {
-  background: black;
+  background: #96de370a;
 }
 .filtros-menu {
   font-size: 0.8rem;
@@ -26,13 +26,18 @@
 .filtro {
   padding: 0.8rem;
   border-radius: 10px;
+  transition:
+    background-color 0.2s ease-out,
+    color 0.2s ease-out;
 }
 .filtro:hover {
   cursor: pointer;
   background-color: #96de37;
-  color: black;
 }
 .filtros a {
   text-decoration: none;
   color: white;
+}
+.filtros a:hover {
+  color: black;
 }

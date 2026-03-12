@@ -1,15 +1,34 @@
 import classes from "./page.module.css";
 import Imagenes from "@/components/Imagenes";
-import { DUMMY_PRODUCTS } from "@/utils/data";
 import AgregarCarro from "@/components/AgregarCarro";
 import Link from "next/link";
+import { supabase } from "@/lib/supabase";
 export default async function PagProducto({ params }) {
   const { slug } = await params;
-  const prod = DUMMY_PRODUCTS.find((item) => item.id == slug);
+  const { data: prod, error } = await supabase
+    .from("supplements")
+    .select("*")
+    .eq("id", slug)
+    .single();
+
   let precio = prod.precio;
   if (prod.descuento) {
     precio = ((prod.precio * (100 - prod.porcentajeDescuento)) / 100).toFixed(
       2,
+    );
+  }
+
+  if (error) {
+    return (
+      <div className={classes.noResultados}>
+        <p>
+          Error al cargar los productos. Por favor, inténtalo de nuevo más
+          tarde.
+        </p>
+        <Link href="/">
+          <button>Volver al inicio</button>
+        </Link>
+      </div>
     );
   }
   return (
@@ -35,7 +54,7 @@ export default async function PagProducto({ params }) {
               <p>{prod.marca}</p>
             </div>
           </div>
-          <p className={classes["prod-desc"]}>{prod.descripcion}</p>
+          <p className={classes["prod-desc"]}>{prod.description}</p>
           {prod.stock !== 0 ? (
             <>
               {!prod.descuento ? (

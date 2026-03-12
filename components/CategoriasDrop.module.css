@@ -4,25 +4,28 @@
   color: white;
   font-family: "Montserrat";
   border: none;
-  font-size: 1rem;
+  font-size: 0.95rem;
   cursor: pointer;
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  padding: 1rem 0.3rem;
+  padding: 0.8rem 1rem;
 }
 .categoria:hover {
-  background-color: black;
+  background-color: #96de370a;
   border-top-left-radius: 10px;
+
   border-top-right-radius: 10px;
   border-bottom: 2px solid #96de37;
 }
 .categoria svg {
   justify-self: flex-end;
   transition: transform 0.3s ease-out;
+  color: grey;
 }
 .up {
   transform: rotate(180deg);
+  color: #96de37 !important;
 }
 .subcategorias {
   background: black;
@@ -31,7 +34,7 @@
   border-bottom-right-radius: 10px;
 }
 .subcategoria {
-  width: 190.65px;
+  width: 230px;
   display: flex;
   background: none;
   color: white;
@@ -42,7 +45,9 @@
   text-align: left;
   font-size: 1rem;
   padding: 1rem 1rem;
+  transition: padding 0.2s ease-out;
 }
 .subcategoria:hover {
   color: #96de37;
+  padding-left: 1.2rem;
 }

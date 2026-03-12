@@ -1,12 +1,12 @@
 "use client";
 import ProductoCard from "@/components/ProductoCard";
-import { DUMMY_PRODUCTS } from "@/utils/data";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 
 let PROD_X_PAG = 10;
 import classes from "./page.module.css";
 import Link from "next/link";
+import { supabase } from "@/lib/supabase";
 
 export default function Catalogo() {
   const searchParams = useSearchParams();
@@ -16,9 +16,25 @@ export default function Catalogo() {
   const busquedaParams = searchParams.get("search");
   const precioParams = searchParams.get("precio");
   const [pagActual, setPagActual] = useState(1);
+  const [suplementos, setSuplementos] = useState([]);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
 
+  useEffect(() => {
+    async function fetchSuplementos() {
+      const { data, error } = await supabase.from("supplements").select("*");
+      if (error) {
+        console.error("Error al obtener suplementos:", error);
+        setError(error);
+      } else {
+        setSuplementos(data);
+      }
+      setLoading(false);
+    }
+    fetchSuplementos();
+  }, []);
   const productosFiltrados = useMemo(() => {
-    let resultado = DUMMY_PRODUCTS;
+    let resultado = suplementos;
     if (busquedaParams != null && busquedaParams.trim() !== "") {
       const query = busquedaParams.toLowerCase().trim();
       resultado = resultado.filter((item) => {
@@ -75,6 +91,7 @@ export default function Catalogo() {
     }
     return resultado;
   }, [
+    suplementos,
     categoriaParams,
     subcategoriaParams,
     marcaParams,
@@ -98,6 +115,27 @@ export default function Catalogo() {
   function handleDecClick(num) {
     setPagActual((prev) => prev - 1);
   }
+  if (loading) {
+    return (
+      <div className={classes.cargando}>
+        <div className={classes.spinner}></div>
+      </div>
+    );
+  }
+  if (error) {
+    return (
+      <div className={classes.noResultados}>
+        <p>
+          Error al cargar los productos. Por favor, inténtalo de nuevo más
+          tarde.
+        </p>
+        <Link href="/">
+          <button>Volver al inicio</button>
+        </Link>
+      </div>
+    );
+  }
+
   return (
     <>
       {productos.length === 0 ? (
