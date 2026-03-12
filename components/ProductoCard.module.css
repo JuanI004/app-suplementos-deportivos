@@ -37,6 +37,18 @@
   top: 10px;
   left: 10px;
 }
+.marca-badge {
+  position: absolute;
+  background-color: #1d1d1d;
+  padding: 0.2rem 0.5rem;
+  border-radius: 5px;
+  text-align: center;
+  color: #96de37;
+  font-weight: bolder;
+  font-size: 15px;
+  top: 10px;
+  right: 10px;
+}
 .card-stock {
   border: 1px solid #464646;
   color: #464646;

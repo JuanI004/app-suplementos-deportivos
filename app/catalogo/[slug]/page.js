@@ -1,6 +1,7 @@
 import classes from "./page.module.css";
 import Imagenes from "@/components/Imagenes";
 import AgregarCarro from "@/components/AgregarCarro";
+import ProductoCard from "@/components/ProductoCard";
 import Link from "next/link";
 import { supabase } from "@/lib/supabase";
 export default async function PagProducto({ params }) {
@@ -10,6 +11,27 @@ export default async function PagProducto({ params }) {
     .select("*")
     .eq("id", slug)
     .single();
+  const { data: mismaMarca } = await supabase
+    .from("supplements")
+    .select("*")
+    .eq("categoria", prod.categoria)
+    .eq("marca", prod.marca)
+    .neq("id", slug)
+    .limit(4);
+  const necesitaMas = 4 - (mismaMarca?.length ?? 0);
+  let otrasMarcas = [];
+  if (necesitaMas > 0) {
+    const { data: otras } = await supabase
+      .from("supplements")
+      .select("*")
+      .eq("categoria", prod.categoria)
+      .neq("marca", prod.marca)
+      .neq("id", slug)
+      .limit(necesitaMas);
+    otrasMarcas = otras ?? [];
+  }
+
+  const relacionados = [...(mismaMarca ?? []), ...(otrasMarcas ?? [])];
 
   let precio = prod.precio;
   if (prod.descuento) {
@@ -72,6 +94,27 @@ export default async function PagProducto({ params }) {
           ) : (
             <h2 className={classes["prod-stock"]}>Sin Stock</h2>
           )}
+        </div>
+      </div>
+      <div className={classes["prods-relacionados"]}>
+        <div className={classes["prods-relacionados__header"]}>
+          <h2>Productos relacionados</h2>
+          <p>{prod.categoria}</p>
+        </div>
+
+        <div>
+          <ul className={classes["prods-relacionados__list"]}>
+            {relacionados.map((prodRel) => (
+              <li key={prodRel.id} className={classes.producto}>
+                <Link href={`/catalogo/${prodRel.id}`}>
+                  <ProductoCard
+                    prod={prodRel}
+                    marca={prodRel.marca === prod.marca && prod.marca}
+                  />
+                </Link>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </>

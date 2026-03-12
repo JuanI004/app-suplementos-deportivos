@@ -2,7 +2,7 @@ import classes from "./ProductoCard.module.css";
 import placeholderImg from "@/public/images/placeholder.webp";
 import Image from "next/image";
 
-export default function ProductoCard({ prod }) {
+export default function ProductoCard({ prod, marca = null }) {
   let precio = prod.precio;
   if (prod.descuento) {
     precio = ((prod.precio * (100 - prod.porcentajeDescuento)) / 100).toFixed(
@@ -17,6 +17,7 @@ export default function ProductoCard({ prod }) {
           -{prod.porcentajeDescuento}%
         </div>
       )}
+      {marca && <div className={classes["marca-badge"]}>{marca}</div>}
       <div className={classes["card-img"]}>
         <Image src={placeholderImg} alt={prod.nombre} />
       </div>
