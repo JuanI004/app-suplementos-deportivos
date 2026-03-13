@@ -65,7 +65,6 @@
 .nav-items__button:hover {
   color: #78b32d;
   cursor: pointer;
-  transform: scale(1.05);
 }
 .header-img {
   width: 180px;

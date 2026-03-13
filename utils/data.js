@@ -27,7 +27,6 @@ export const SUBCATEGORIAS = [
   { id: 6, nombre: "Quemadores", categoriaId: 1 },
   { id: 7, nombre: "Hidratación", categoriaId: 1 },
   { id: 8, nombre: "Energía", categoriaId: 1 },
-
   // Vitaminas
   { id: 9, nombre: "Multivitamínicos", categoriaId: 2 },
   { id: 10, nombre: "Aceites Esenciales", categoriaId: 2 },
@@ -36,7 +35,6 @@ export const SUBCATEGORIAS = [
   { id: 13, nombre: "Adaptógenos", categoriaId: 2 },
   { id: 14, nombre: "Descanso", categoriaId: 2 },
   { id: 15, nombre: "Salud Articular", categoriaId: 2 },
-
   // Accesorios
   { id: 16, nombre: "Shakers", categoriaId: 3 },
   { id: 17, nombre: "Botellas", categoriaId: 3 },
@@ -51,61 +49,64 @@ export const SUBCATEGORIAS = [
 export const MARCAS = [
   {
     id: 1,
-    nombre: "Optimum Nutrition",
+    nombre: "IronPeak",
     descripcion: "Líder mundial en nutrición deportiva desde 1986",
-    logo: "/images/marcas/optimum-nutrition-logo.png",
+    logo: "/images/marcas/ironpeak-logo.png",
   },
   {
     id: 2,
-    nombre: "Dymatize",
+    nombre: "NexaFit",
     descripcion: "Innovación y calidad en suplementos deportivos",
-    logo: "/images/marcas/dymatize-logo.png",
+    logo: "/images/marcas/nexafit-logo.png",
   },
   {
     id: 3,
-    nombre: "MuscleTech",
+    nombre: "ForgeX",
     descripcion: "Fórmulas científicamente probadas para atletas",
-    logo: "/images/marcas/muscletech-logo.png",
+    logo: "/images/marcas/forgex-logo.png",
   },
   {
     id: 4,
-    nombre: "Garden of Life",
+    nombre: "PureRoot",
     descripcion: "Suplementos orgánicos y veganos certificados",
-    logo: "/images/marcas/garden-of-life-logo.png",
+    logo: "/images/marcas/pureroot-logo.png",
   },
   {
     id: 5,
-    nombre: "BSN",
+    nombre: "ApexCore",
     descripcion: "Performance y sabor excepcional desde 2001",
-    logo: "/images/marcas/bsn-logo.png",
+    logo: "/images/marcas/apexcore-logo.png",
   },
   {
     id: 6,
-    nombre: "Cellucor",
+    nombre: "VoltLab",
     descripcion: "Innovación en nutrición deportiva y pre-workouts",
-    logo: "/images/marcas/cellucor-logo.png",
+    logo: "/images/marcas/voltlab-logo.png",
   },
 ];
-const SUPABASE_STORAGE_URL = `https://${process.env.NEXT_PUBLIC_SUPABASE_URL}.supabase.co/storage/v1/object/public/product-images`;
+
+const SUPABASE_STORAGE_URL = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/product-images`;
+
 export const PRODUCT_IMAGES = {
-  imgSuplementoOptimumNutrition: `${SUPABASE_STORAGE_URL}/imgSuplementoOptimumNutrition.jpg`,
-  imgSuplementoDymatize: `${SUPABASE_STORAGE_URL}/imgSuplementoDymatize.jpg`,
-  imgSuplementoMuscleTech: `${SUPABASE_STORAGE_URL}/imgSuplementoMuscleTech.jpg`,
-  imgSuplementoGardenOfLife: `${SUPABASE_STORAGE_URL}/imgSuplementoGardenOfLife.jpg`,
-  imgSuplementoBSN: `${SUPABASE_STORAGE_URL}/imgSuplementoBSN.jpg`,
-  imgSuplementoCellucor: `${SUPABASE_STORAGE_URL}/imgSuplementoCellucor.jpg`,
+  // Suplementos
+  imgSuplementoIronPeak: `${SUPABASE_STORAGE_URL}/imgSuplementoIronPeak.jpg`,
+  imgSuplementoNexaFit: `${SUPABASE_STORAGE_URL}/imgSuplementoNexaFit.jpg`,
+  imgSuplementoForgeX: `${SUPABASE_STORAGE_URL}/imgSuplementoForgeX.jpg`,
+  imgSuplementoPureRoot: `${SUPABASE_STORAGE_URL}/imgSuplementoPureRoot.jpg`,
+  imgSuplementoApexCore: `${SUPABASE_STORAGE_URL}/imgSuplementoApexCore.jpg`,
+  imgSuplementoVoltLab: `${SUPABASE_STORAGE_URL}/imgSuplementoVoltLab.jpg`,
   // Vitaminas
-  imgVitaminaOptimumNutrition: `${SUPABASE_STORAGE_URL}/imgVitaminaOptimumNutrition.jpg`,
-  imgVitaminaDymatize: `${SUPABASE_STORAGE_URL}/imgVitaminaDymatize.jpg`,
-  imgVitaminaMuscleTech: `${SUPABASE_STORAGE_URL}/imgVitaminaMuscleTech.jpg`,
-  imgVitaminaGardenOfLife: `${SUPABASE_STORAGE_URL}/imgVitaminaGardenOfLife.jpg`,
-  imgVitaminaBSN: `${SUPABASE_STORAGE_URL}/imgVitaminaBSN.jpg`,
-  imgVitaminaCellucor: `${SUPABASE_STORAGE_URL}/imgVitaminaCellucor.jpg`,
+  imgVitaminaIronPeak: `${SUPABASE_STORAGE_URL}/imgVitaminaIronPeak.jpg`,
+  imgVitaminaNexaFit: `${SUPABASE_STORAGE_URL}/imgVitaminaNexaFit.jpg`,
+  imgVitaminaForgeX: `${SUPABASE_STORAGE_URL}/imgVitaminaForgeX.jpg`,
+  imgVitaminaPureRoot: `${SUPABASE_STORAGE_URL}/imgVitaminaPureRoot.jpg`,
+  imgVitaminaApexCore: `${SUPABASE_STORAGE_URL}/imgVitaminaApexCore.jpg`,
+  imgVitaminaVoltLab: `${SUPABASE_STORAGE_URL}/imgVitaminaVoltLab.jpg`,
   // Accesorios
-  imgAccesorioOptimumNutrition: `${SUPABASE_STORAGE_URL}/imgAccesorioOptimumNutrition.jpg`,
-  imgAccesorioDymatize: `${SUPABASE_STORAGE_URL}/imgAccesorioDymatize.jpg`,
-  imgAccesorioMuscleTech: `${SUPABASE_STORAGE_URL}/imgAccesorioMuscleTech.jpg`,
-  imgAccesorioGardenOfLife: `${SUPABASE_STORAGE_URL}/imgAccesorioGardenOfLife.jpg`,
-  imgAccesorioBSN: `${SUPABASE_STORAGE_URL}/imgAccesorioBSN.jpg`,
-  imgAccesorioCellucor: `${SUPABASE_STORAGE_URL}/imgAccesorioCellucor.jpg`,
+  imgAccesorioIronPeak: `${SUPABASE_STORAGE_URL}/imgAccesorioIronPeak.jpg`,
+  imgAccesorioNexaFit: `${SUPABASE_STORAGE_URL}/imgAccesorioNexaFit.jpg`,
+  imgAccesorioForgeX: `${SUPABASE_STORAGE_URL}/imgAccesorioForgeX.jpg`,
+  imgAccesorioPureRoot: `${SUPABASE_STORAGE_URL}/imgAccesorioPureRoot.jpg`,
+  imgAccesorioApexCore: `${SUPABASE_STORAGE_URL}/imgAccesorioApexCore.jpg`,
+  imgAccesorioVoltLab: `${SUPABASE_STORAGE_URL}/imgAccesorioVoltLab.jpg`,
 };

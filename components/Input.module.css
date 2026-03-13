@@ -1,0 +1,44 @@
+.group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.group label {
+  color: rgba(255, 255, 255, 0.507);
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  font-weight: 600;
+  text-align: left;
+}
+.group input {
+  padding: 0.75rem 1rem;
+  padding-left: 2.75rem;
+  width: 100%;
+  background: #1d1d1d;
+  border: 1px solid rgba(255, 255, 255, 0.226);
+  border-radius: 8px;
+  color: white;
+  font-size: 1rem;
+  font-family: "Montserrat", sans-serif;
+  transition: all 0.3s ease;
+}
+.group input:focus {
+  outline: none;
+  border-color: #96de37;
+  background: #96de3710;
+}
+.group input::placeholder {
+  color: rgba(255, 255, 255, 0.315);
+  opacity: 1;
+}
+.inputWrapper {
+  width: 100%;
+  position: relative;
+}
+.icon {
+  position: absolute;
+  top: 55%;
+  left: 0.75rem;
+  transform: translateY(-50%);
+}

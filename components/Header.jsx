@@ -11,6 +11,7 @@ import Carro from "./Carro";
 export default function Header() {
   const [navIsOpen, setNavIsOpen] = useState(false);
   const [cartIsOpen, setCartIsOpen] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const totalQuantity = useSelector((state) => state.cart.totalQuantity);
   function handleToggle() {
     setNavIsOpen((prev) => !prev);
@@ -38,23 +39,41 @@ export default function Header() {
         </div>
 
         <ul className={classes["nav-items"]}>
-          <li>
-            <Link href="/catalogo?cat=Suplementos">Suplementos</Link>
-          </li>
-          <li>
-            <Link href="/catalogo?cat=Vitaminas">Vitaminas</Link>
-          </li>
-          <li>
-            <Link href="/catalogo?cat=Accesorios">Accesorios</Link>
-          </li>
-          <li>
-            <button
-              className={classes["nav-items__button"]}
-              onClick={handleToggleCart}
-            >
-              Mi carro ({totalQuantity})
-            </button>
-          </li>
+          {isLoggedIn ? (
+            <li>
+              <Link href="/perfil">Perfil</Link>
+              <li>
+                <Link href="/catalogo?cat=Suplementos">Suplementos</Link>
+              </li>
+              <li>
+                <Link href="/catalogo?cat=Vitaminas">Vitaminas</Link>
+              </li>
+              <li>
+                <Link href="/catalogo?cat=Accesorios">Accesorios</Link>
+              </li>
+              <li>
+                <button
+                  className={classes["nav-items__button"]}
+                  onClick={handleToggleCart}
+                >
+                  Mi carro ({totalQuantity})
+                </button>
+              </li>
+            </li>
+          ) : (
+            <>
+              <li>
+                <Link href="/login">Iniciar Sesión</Link>
+              </li>
+              <li>
+                <Link href="/signup">
+                  <button className={classes["nav-items__button"]}>
+                    Crear Cuenta
+                  </button>
+                </Link>
+              </li>
+            </>
+          )}
         </ul>
       </header>
       {navIsOpen && (
@@ -78,31 +97,54 @@ export default function Header() {
               </svg>
             </button>
             <ul className={classes["mobile-nav__items"]}>
-              <li className={classes["mobile-nav__item"]}>
-                <Link href="/catalogo?cat=Suplementos" onClick={handleToggle}>
-                  Suplementos
-                </Link>
-              </li>
-              <li className={classes["mobile-nav__item"]}>
-                <Link href="/catalogo?cat=Vitaminas" onClick={handleToggle}>
-                  Vitaminas
-                </Link>
-              </li>
-              <li className={classes["mobile-nav__item"]}>
-                <Link href="/catalogo?cat=Accesorios" onClick={handleToggle}>
-                  Accesorios
-                </Link>
-              </li>
-              <li className={classes["mobile-nav__item--cta"]}>
-                <a
-                  onClick={() => {
-                    handleToggle();
-                    handleToggleCart();
-                  }}
-                >
-                  Mi carro (0)
-                </a>
-              </li>
+              {isLoggedIn ? (
+                <>
+                  <li className={classes["mobile-nav__item"]}>
+                    <Link
+                      href="/catalogo?cat=Suplementos"
+                      onClick={handleToggle}
+                    >
+                      Suplementos
+                    </Link>
+                  </li>
+                  <li className={classes["mobile-nav__item"]}>
+                    <Link href="/catalogo?cat=Vitaminas" onClick={handleToggle}>
+                      Vitaminas
+                    </Link>
+                  </li>
+                  <li className={classes["mobile-nav__item"]}>
+                    <Link
+                      href="/catalogo?cat=Accesorios"
+                      onClick={handleToggle}
+                    >
+                      Accesorios
+                    </Link>
+                  </li>
+                  <li className={classes["mobile-nav__item--cta"]}>
+                    <a
+                      onClick={() => {
+                        handleToggle();
+                        handleToggleCart();
+                      }}
+                    >
+                      Mi carro (0)
+                    </a>
+                  </li>
+                </>
+              ) : (
+                <>
+                  <li className={classes["mobile-nav__item"]}>
+                    <Link href="/login" onClick={handleToggle}>
+                      Iniciar Sesión
+                    </Link>
+                  </li>
+                  <li className={classes["mobile-nav__item"]}>
+                    <Link href="/signup" onClick={handleToggle}>
+                      Crear Cuenta
+                    </Link>
+                  </li>
+                </>
+              )}
             </ul>
             <Image
               src={headerImg}
