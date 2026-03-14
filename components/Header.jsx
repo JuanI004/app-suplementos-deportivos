@@ -7,17 +7,22 @@ import { useState } from "react";
 import Link from "next/link";
 import { useSelector } from "react-redux";
 import Carro from "./Carro";
+import { useAuth } from "./Auth";
+import { supabase } from "@/lib/supabase";
 
 export default function Header() {
+  const { session } = useAuth();
   const [navIsOpen, setNavIsOpen] = useState(false);
   const [cartIsOpen, setCartIsOpen] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const totalQuantity = useSelector((state) => state.cart.totalQuantity);
   function handleToggle() {
     setNavIsOpen((prev) => !prev);
   }
   function handleToggleCart() {
     setCartIsOpen((prev) => !prev);
+  }
+  async function handleCerrarSesion() {
+    await supabase.auth.signOut();
   }
   return (
     <>
@@ -39,9 +44,8 @@ export default function Header() {
         </div>
 
         <ul className={classes["nav-items"]}>
-          {isLoggedIn ? (
-            <li>
-              <Link href="/perfil">Perfil</Link>
+          {session ? (
+            <>
               <li>
                 <Link href="/catalogo?cat=Suplementos">Suplementos</Link>
               </li>
@@ -52,6 +56,14 @@ export default function Header() {
                 <Link href="/catalogo?cat=Accesorios">Accesorios</Link>
               </li>
               <li>
+                <Link href="/perfil">Mi Perfil</Link>
+              </li>
+              <li>
+                <a onClick={handleCerrarSesion} style={{ cursor: "pointer" }}>
+                  Cerrar Sesión
+                </a>
+              </li>
+              <li>
                 <button
                   className={classes["nav-items__button"]}
                   onClick={handleToggleCart}
@@ -59,7 +71,7 @@ export default function Header() {
                   Mi carro ({totalQuantity})
                 </button>
               </li>
-            </li>
+            </>
           ) : (
             <>
               <li>
@@ -97,7 +109,7 @@ export default function Header() {
               </svg>
             </button>
             <ul className={classes["mobile-nav__items"]}>
-              {isLoggedIn ? (
+              {session ? (
                 <>
                   <li className={classes["mobile-nav__item"]}>
                     <Link
@@ -119,6 +131,19 @@ export default function Header() {
                     >
                       Accesorios
                     </Link>
+                  </li>
+                  <li className={classes["mobile-nav__item"]}>
+                    <Link href="/perfil" onClick={handleToggle}>
+                      Mi Perfil
+                    </Link>
+                  </li>
+                  <li className={classes["mobile-nav__item"]}>
+                    <a
+                      onClick={handleCerrarSesion}
+                      style={{ cursor: "pointer" }}
+                    >
+                      Cerrar Sesión
+                    </a>
                   </li>
                   <li className={classes["mobile-nav__item--cta"]}>
                     <a

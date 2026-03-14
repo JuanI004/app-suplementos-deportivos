@@ -42,3 +42,15 @@
   left: 0.75rem;
   transform: translateY(-50%);
 }
+.icon-ver {
+  position: absolute;
+  top: 55%;
+  right: 0.75rem;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+.error {
+  color: #ff4d4d;
+  font-size: 0.8rem;
+  margin-top: 0.25rem;
+}
