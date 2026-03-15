@@ -75,7 +75,6 @@ export default function Header() {
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
                   className={catMenuIsOpen ? classes.up : undefined}
-                  style={{ marginBottom: "8px" }}
                 >
                   <path
                     d="M4 6L8 10L12 6"
@@ -168,6 +167,7 @@ export default function Header() {
                         display: "flex",
                         alignItems: "center",
                         gap: "0.5rem",
+                        cursor: "pointer",
                       }}
                     >
                       Catálogo
@@ -190,7 +190,9 @@ export default function Header() {
                     </a>
                     <ul
                       className={`${classes["mobile-nav__submenu"]} ${
-                        catMenuIsOpen ? classes["submenu-visible"] : ""
+                        catMenuIsOpen
+                          ? classes["mobile-nav__submenu--visible"]
+                          : ""
                       }`}
                     >
                       <li className={classes["submenu__item"]}>

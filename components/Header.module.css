@@ -42,10 +42,16 @@
   gap: 1rem;
   opacity: 0;
   border-radius: 0 0 10px 10px;
+  z-index: -1;
   transition:
     opacity 0.3s ease,
     max-height 0.3s ease,
     transform 0.3s ease;
+}
+.submenu-visible {
+  opacity: 1;
+  max-height: 154px;
+  transform: translateY(6.7rem);
 }
 .nav-items__submenu li {
   list-style: none;
@@ -58,7 +64,6 @@
   gap: 1rem;
   opacity: 0;
   padding-left: 2rem;
-
   margin-left: 2rem;
   border-left: 2px solid #96de37;
   transition:
@@ -71,7 +76,7 @@
 .mobile-nav__item svg {
   transition: transform 0.3s ease;
 }
-.submenu-visible {
+.mobile-nav__submenu--visible {
   opacity: 1;
   margin-top: 1rem;
   max-height: 400px;
@@ -87,7 +92,7 @@
   position: relative;
   text-decoration: none;
   color: rgba(255, 255, 255, 0.85);
-  padding-bottom: 5px;
+
   transition: color 0.25s ease;
 }
 .nav-items li a::after {
