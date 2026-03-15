@@ -3,7 +3,7 @@ import Image from "next/image";
 import classes from "./Header.module.css";
 import headerImg from "../public/images/ironfuel-header.webp";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useSelector } from "react-redux";
 import Carro from "./Carro";
@@ -11,9 +11,20 @@ import { useAuth } from "./Auth";
 import { supabase } from "@/lib/supabase";
 
 export default function Header() {
-  const { session } = useAuth();
+  const { session, setSession } = useAuth();
+  useEffect(() => {
+    const { data: authListener } = supabase.auth.onAuthStateChange(
+      (_event, session) => {
+        setSession(session);
+      },
+    );
+    return () => {
+      authListener.subscription.unsubscribe();
+    };
+  }, [session, setSession]);
   const [navIsOpen, setNavIsOpen] = useState(false);
   const [cartIsOpen, setCartIsOpen] = useState(false);
+  const [catMenuIsOpen, setCatMenuIsOpen] = useState(false);
   const totalQuantity = useSelector((state) => state.cart.totalQuantity);
   function handleToggle() {
     setNavIsOpen((prev) => !prev);
@@ -46,14 +57,49 @@ export default function Header() {
         <ul className={classes["nav-items"]}>
           {session ? (
             <>
-              <li>
-                <Link href="/catalogo?cat=Suplementos">Suplementos</Link>
-              </li>
-              <li>
-                <Link href="/catalogo?cat=Vitaminas">Vitaminas</Link>
-              </li>
-              <li>
-                <Link href="/catalogo?cat=Accesorios">Accesorios</Link>
+              <li
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  gap: "0.5rem",
+                  position: "relative",
+                }}
+                onClick={() => setCatMenuIsOpen((prev) => !prev)}
+              >
+                <a>Catálogo</a>
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 16 16"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  className={catMenuIsOpen ? classes.up : undefined}
+                  style={{ marginBottom: "8px" }}
+                >
+                  <path
+                    d="M4 6L8 10L12 6"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+                <ul
+                  className={`${classes["nav-items__submenu"]} ${
+                    catMenuIsOpen ? classes["submenu-visible"] : ""
+                  }`}
+                >
+                  <li>
+                    <Link href="/catalogo?cat=Suplementos">Suplementos</Link>
+                  </li>
+                  <li>
+                    <Link href="/catalogo?cat=Vitaminas">Vitaminas</Link>
+                  </li>
+                  <li>
+                    <Link href="/catalogo?cat=Accesorios">Accesorios</Link>
+                  </li>
+                </ul>
               </li>
               <li>
                 <Link href="/perfil">Mi Perfil</Link>
@@ -111,27 +157,69 @@ export default function Header() {
             <ul className={classes["mobile-nav__items"]}>
               {session ? (
                 <>
-                  <li className={classes["mobile-nav__item"]}>
-                    <Link
-                      href="/catalogo?cat=Suplementos"
-                      onClick={handleToggle}
+                  <li
+                    className={classes["mobile-nav__item"]}
+                    onClick={() => {
+                      setCatMenuIsOpen((prev) => !prev);
+                    }}
+                  >
+                    <a
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "0.5rem",
+                      }}
                     >
-                      Suplementos
-                    </Link>
-                  </li>
-                  <li className={classes["mobile-nav__item"]}>
-                    <Link href="/catalogo?cat=Vitaminas" onClick={handleToggle}>
-                      Vitaminas
-                    </Link>
-                  </li>
-                  <li className={classes["mobile-nav__item"]}>
-                    <Link
-                      href="/catalogo?cat=Accesorios"
-                      onClick={handleToggle}
+                      Catálogo
+                      <svg
+                        width="32"
+                        height="32"
+                        viewBox="0 0 16 16"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                        className={catMenuIsOpen ? classes.up : undefined}
+                      >
+                        <path
+                          d="M4 6L8 10L12 6"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
+                    </a>
+                    <ul
+                      className={`${classes["mobile-nav__submenu"]} ${
+                        catMenuIsOpen ? classes["submenu-visible"] : ""
+                      }`}
                     >
-                      Accesorios
-                    </Link>
+                      <li className={classes["submenu__item"]}>
+                        <Link
+                          href="/catalogo?cat=Suplementos"
+                          onClick={handleToggle}
+                        >
+                          Suplementos
+                        </Link>
+                      </li>
+                      <li className={classes["submenu__item"]}>
+                        <Link
+                          href="/catalogo?cat=Vitaminas"
+                          onClick={handleToggle}
+                        >
+                          Vitaminas
+                        </Link>
+                      </li>
+                      <li className={classes["submenu__item"]}>
+                        <Link
+                          href="/catalogo?cat=Accesorios"
+                          onClick={handleToggle}
+                        >
+                          Accesorios
+                        </Link>
+                      </li>
+                    </ul>
                   </li>
+
                   <li className={classes["mobile-nav__item"]}>
                     <Link href="/perfil" onClick={handleToggle}>
                       Mi Perfil
@@ -152,7 +240,7 @@ export default function Header() {
                         handleToggleCart();
                       }}
                     >
-                      Mi carro (0)
+                      Mi carro ({totalQuantity})
                     </a>
                   </li>
                 </>

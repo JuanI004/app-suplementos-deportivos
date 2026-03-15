@@ -17,6 +17,8 @@ export default function AuthProvider({ children }) {
     });
   }, []);
   return (
-    <AuthContext.Provider value={{ session }}>{children}</AuthContext.Provider>
+    <AuthContext.Provider value={{ session, setSession }}>
+      {children}
+    </AuthContext.Provider>
   );
 }
