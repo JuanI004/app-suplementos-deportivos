@@ -85,6 +85,45 @@ export const MARCAS = [
   },
 ];
 
+export const OVERVIEW_ITEMS = {
+  pedidos: { label: "Pedidos", color: "#FFF" },
+  pendiente: {
+    label: "Pendiente",
+    color: "#f59e0b",
+    bg: "rgba(245,158,11,0.08)",
+    border: "rgba(245,158,11,0.25)",
+    step: 1,
+  },
+  confirmado: {
+    label: "Confirmado",
+    color: "#3b82f6",
+    bg: "rgba(59,130,246,0.08)",
+    border: "rgba(59,130,246,0.25)",
+    step: 2,
+  },
+  en_camino: {
+    label: "En camino",
+    color: "#a78bfa",
+    bg: "rgba(167,139,250,0.08)",
+    border: "rgba(167,139,250,0.25)",
+    step: 3,
+  },
+  entregado: {
+    label: "Entregado",
+    color: "#96de37",
+    bg: "rgba(150,222,55,0.08)",
+    border: "rgba(150,222,55,0.25)",
+    step: 4,
+  },
+  cancelado: {
+    label: "Cancelado",
+    color: "#ef4444",
+    bg: "rgba(239,68,68,0.08)",
+    border: "rgba(239,68,68,0.25)",
+    step: 0,
+  },
+};
+
 const SUPABASE_STORAGE_URL = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/product-images`;
 
 export const PRODUCT_IMAGES = {

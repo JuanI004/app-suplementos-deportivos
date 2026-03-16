@@ -2,34 +2,11 @@
 import { useAuth } from "@/components/Auth";
 import { useRouter } from "next/navigation";
 import classes from "./page.module.css";
-
-const OVERVIEW_ITEMS = [
-  {
-    title: "Pedidos",
-    color: "#FFF",
-  },
-  {
-    title: "Entregados",
-    value: "entregado",
-    color: "#96de37",
-  },
-  {
-    title: "En Camino",
-    value: "en_camino",
-    color: "#895eb1",
-  },
-  {
-    title: "Pendientes",
-    value: "pendiente",
-    color: "#f7a22c",
-  },
-  {
-    title: "Confirmados",
-    value: "confirmado",
-    color: "#5bc0de",
-  },
-  { title: "Cancelados", value: "cancelado", color: "#d9534f" },
-];
+import placeholder from "@/public/images/placeholder.webp";
+import PedidoEstadoBar from "@/components/PedidoEstadoBar";
+import { OVERVIEW_ITEMS } from "@/utils/data";
+import { useState } from "react";
+import Image from "next/image";
 
 const MOCK_PEDIDOS = [
   {
@@ -37,7 +14,7 @@ const MOCK_PEDIDOS = [
     created_at: "2026-01-15T10:30:00Z",
     estado: "entregado",
     total: 154.97,
-    metodo_pago: "transferencia",
+    metodo_pago: "Transferencia bancaria",
     notas: "Dejar en portería",
     nombre: "Juan",
     apellido: "García",
@@ -69,7 +46,7 @@ const MOCK_PEDIDOS = [
     created_at: "2026-02-03T14:20:00Z",
     estado: "en_camino",
     total: 94.99,
-    metodo_pago: "mercadopago",
+    metodo_pago: "Mercado Pago",
     notas: "",
     nombre: "Juan",
     apellido: "García",
@@ -93,7 +70,7 @@ const MOCK_PEDIDOS = [
     created_at: "2026-03-01T09:00:00Z",
     estado: "pendiente",
     total: 44.99,
-    metodo_pago: "efectivo",
+    metodo_pago: "Efectivo",
     notas: "",
     nombre: "Juan",
     apellido: "García",
@@ -117,7 +94,7 @@ const MOCK_PEDIDOS = [
     created_at: "2025-12-20T16:45:00Z",
     estado: "cancelado",
     total: 119.99,
-    metodo_pago: "transferencia",
+    metodo_pago: "Transferencia bancaria",
     notas: "",
     nombre: "Juan",
     apellido: "García",
@@ -140,11 +117,22 @@ const MOCK_PEDIDOS = [
 
 export default function Perfil() {
   const { session, setSession } = useAuth();
+  const [pedidoAbierto, setPedidoAbierto] = useState(null);
   const router = useRouter();
   if (!session) {
     router.push("/login");
   }
-
+  function sumaTotal(items) {
+    return items.reduce((total, item) => {
+      const precioFinal = item.descuento
+        ? item.precio * (1 - item.porcentajeDescuento / 100)
+        : item.precio;
+      return total + precioFinal * item.cantidad;
+    }, 0);
+  }
+  function cantTotal(items) {
+    return items.reduce((total, item) => total + item.cantidad, 0);
+  }
   return (
     <div className={classes.bg}>
       <main className={classes.perfil}>
@@ -168,35 +156,141 @@ export default function Perfil() {
           </button>
         </section>
         <section className={classes["perfil-overview"]}>
-          {OVERVIEW_ITEMS.slice(0, 4).map((item) => (
-            <div key={item.title} className={classes["overview-item"]}>
-              <h1>
-                {item.title === "Pedidos"
-                  ? MOCK_PEDIDOS.length
-                  : MOCK_PEDIDOS.filter(
-                      (pedido) => pedido.estado === item.value,
-                    ).length}
-              </h1>
-              <h3>{item.title}</h3>
-            </div>
-          ))}
+          {Object.entries(OVERVIEW_ITEMS)
+            .slice(0, 4)
+            .map(([key, item]) => (
+              <div key={key} className={classes["overview-item"]}>
+                <h1>
+                  {item.label === "Pedidos"
+                    ? MOCK_PEDIDOS.length
+                    : MOCK_PEDIDOS.filter((pedido) => pedido.estado === key)
+                        .length}
+                </h1>
+                <h3>{item.label}</h3>
+              </div>
+            ))}
         </section>
         <div className={classes["divider"]} />
         <section className={classes["perfil-pedidos"]}>
           <h3>Historial de Pedidos</h3>
           <ul className={classes["pedidos-categorias"]}>
-            {OVERVIEW_ITEMS.map((item) => (
-              <li key={item.title}>
+            {Object.entries(OVERVIEW_ITEMS).map(([key, item]) => (
+              <li key={key}>
                 {" "}
-                <h4>{item.title !== "Pedidos" ? item.title : "Todos"}</h4>
-                {item.title !== "Pedidos" && (
+                <h4>{item.label !== "Pedidos" ? item.label : "Todos"}</h4>
+                {item.label !== "Pedidos" && (
                   <p>
                     {
-                      MOCK_PEDIDOS.filter(
-                        (pedido) => pedido.estado === item.value,
-                      ).length
+                      MOCK_PEDIDOS.filter((pedido) => pedido.estado === key)
+                        .length
                     }
                   </p>
+                )}
+              </li>
+            ))}
+          </ul>
+          <ul className={classes["pedidos-lista"]}>
+            {MOCK_PEDIDOS.map((pedido) => (
+              <li key={pedido.id}>
+                <div
+                  key={pedido.id}
+                  onClick={() =>
+                    setPedidoAbierto((prev) =>
+                      prev === pedido.id ? null : pedido.id,
+                    )
+                  }
+                  className={classes["pedido-item"]}
+                  style={
+                    pedidoAbierto !== pedido.id
+                      ? {
+                          borderBottomLeftRadius: "10px",
+                          borderBottomRightRadius: "10px",
+                        }
+                      : {}
+                  }
+                >
+                  <div className={classes["pedido-info"]}>
+                    <h2>Pedido</h2>
+                    <h1>#{pedido.id.substring(0, 8)}</h1>
+                    <p>{new Date(pedido.created_at).toLocaleDateString()}</p>
+                  </div>
+                  <PedidoEstadoBar estado={pedido.estado} />
+                  <div className={classes["pedido-resumen"]}>
+                    <div className={classes["pedido-total"]}>
+                      <h3>${sumaTotal(pedido.items).toFixed(2)}</h3>
+                      <p>{cantTotal(pedido.items)} items</p>
+                    </div>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      fill="#6e6e6e"
+                      viewBox="0 0 256 256"
+                      className={
+                        pedidoAbierto === pedido.id ? classes["up"] : ""
+                      }
+                    >
+                      <path d="M213.66,101.66l-80,80a8,8,0,0,1-11.32,0l-80-80A8,8,0,0,1,53.66,90.34L128,164.69l74.34-74.35a8,8,0,0,1,11.32,11.32Z"></path>
+                    </svg>
+                  </div>
+                </div>
+                {pedidoAbierto === pedido.id && (
+                  <section className={classes["pedido-detalles"]}>
+                    <h3>Productos</h3>
+                    <ul className={classes["pedido-productos"]}>
+                      {pedido.items.map((item) => (
+                        <li key={item.id}>
+                          <div className={classes["pedido-producto-info"]}>
+                            <Image
+                              src={placeholder}
+                              alt={item.nombre}
+                              width={50}
+                              height={50}
+                            />
+                            <div>
+                              <h3>{item.nombre}</h3>
+                              <p>x{item.cantidad}</p>
+                            </div>
+                          </div>
+                          <div className={classes["pedido-producto-precio"]}>
+                            {item.descuento ? (
+                              <>
+                                <span className={classes["precio-descuento"]}>
+                                  ${(item.precio * item.cantidad).toFixed(2)}
+                                </span>
+                                <span className={classes["precio"]}>
+                                  ${sumaTotal([item]).toFixed(2)}
+                                </span>
+                              </>
+                            ) : (
+                              <span className={classes["precio"]}>
+                                ${item.precio.toFixed(2)}
+                              </span>
+                            )}
+                          </div>
+                        </li>
+                      ))}
+                    </ul>
+                    <div className={classes["pedido-info-detalles"]}>
+                      <div>
+                        <h3>Envío</h3>
+                        <p>
+                          {pedido.nombre} {pedido.apellido}
+                        </p>
+                        <p>{pedido.direccion}</p>
+                        <p>
+                          {pedido.departamento} {pedido.codigo_postal}
+                        </p>
+                      </div>
+                      <div>
+                        <h3>Pago</h3>
+                        <p>{pedido.metodo_pago}</p>
+                        <p style={{ fontStyle: "italic" }}>
+                          &quot;{pedido.notas}&quot;
+                        </p>
+                      </div>
+                    </div>
+                  </section>
                 )}
               </li>
             ))}

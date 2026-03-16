@@ -1,0 +1,99 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  width: 100%;
+  max-width: 300px;
+}
+
+.cancelledStatus {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #ef4444;
+}
+
+.stepItem {
+  display: flex;
+  align-items: center;
+}
+
+.stepGrow {
+  flex: 1;
+}
+
+.stepDot {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.stepDotDone {
+  background: var(--status-color);
+  border: 2px solid var(--status-color);
+}
+
+.stepDotPending {
+  background: rgba(255, 255, 255, 0.05);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.stepDotInner {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.stepLine {
+  flex: 1;
+  height: 2px;
+  transition: background 0.3s ease;
+}
+
+.stepLineDone {
+  background: var(--status-color);
+}
+
+.stepLinePending {
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.statusLabel {
+  margin-left: 0.65rem;
+  font-size: 0.67rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--status-color);
+}
+
+.pendiente {
+  --status-color: #895eb1;
+}
+
+.confirmado {
+  --status-color: #5bc0de;
+}
+
+.en_camino {
+  --status-color: #f0ad4e;
+}
+
+.entregado {
+  --status-color: #96de37;
+}
+
+.cancelado {
+  --status-color: #d9534f;
+}
