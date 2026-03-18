@@ -129,11 +129,15 @@ export default function Header() {
                 <Link href="/login">Iniciar Sesión</Link>
               </li>
               <li>
-                <Link href="/signup">
-                  <button className={classes["nav-items__button"]}>
-                    Crear Cuenta
-                  </button>
-                </Link>
+                <Link href="/signup">Crear Cuenta</Link>
+              </li>
+              <li>
+                <button
+                  className={classes["nav-items__button"]}
+                  onClick={handleToggleCart}
+                >
+                  Mi carro ({totalQuantity})
+                </button>
               </li>
             </>
           )}
@@ -263,6 +267,16 @@ export default function Header() {
                     <Link href="/signup" onClick={handleToggle}>
                       Crear Cuenta
                     </Link>
+                  </li>
+                  <li className={classes["mobile-nav__item--cta"]}>
+                    <a
+                      onClick={() => {
+                        handleToggle();
+                        handleToggleCart();
+                      }}
+                    >
+                      Mi carro ({totalQuantity})
+                    </a>
                   </li>
                 </>
               )}

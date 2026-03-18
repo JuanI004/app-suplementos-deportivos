@@ -13,17 +13,17 @@
   font-weight: bold;
   font-size: 0.9rem;
   font-family: "Montserrat", sans-serif;
-  color: white;
+  color: black;
   background: #96de37;
   background: linear-gradient(
     179deg,
-    rgb(141, 207, 53) 0%,
-    rgb(110, 161, 42) 50%,
-    rgb(93, 138, 36) 100%
+    rgba(166, 243, 63, 1) 0%,
+    rgba(147, 217, 56, 1) 50%,
+    rgba(120, 179, 45, 1) 100%
   );
   border: none;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  border-radius: 10px;
+  border-radius: 24px;
   transition:
     transform 0.3s ease,
     box-shadow 0.3s ease,
@@ -35,9 +35,9 @@
   z-index: 10;
   background: linear-gradient(
     179deg,
-    rgb(119, 177, 44) 0%,
-    rgb(101, 148, 39) 50%,
-    rgb(76, 112, 28) 100%
+    rgba(150, 222, 55, 1) 0%,
+    rgba(128, 189, 49, 1) 50%,
+    rgba(103, 153, 38, 1) 100%
   );
   cursor: pointer;
 }

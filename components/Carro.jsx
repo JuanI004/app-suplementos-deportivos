@@ -63,58 +63,79 @@ export default function Carro({ handleToggle }) {
         </button>
         {!toggleFinalizar ? (
           <>
-            <h1>Mi carro</h1>
             {cartItems.length === 0 ? (
-              <p
-                style={{ color: "white", textAlign: "center", padding: "2rem" }}
-              >
-                Tu carrito está vacío
-              </p>
+              <>
+                {" "}
+                <h1>Mi carro</h1>{" "}
+                <p
+                  style={{
+                    color: "white",
+                    textAlign: "center",
+                    padding: "2rem",
+                  }}
+                >
+                  Tu carrito está vacío
+                </p>
+              </>
             ) : (
               <>
-                <ul className={classes["cart-items"]}>
-                  {cartItems.map((item) => {
-                    let precio = item.precio;
-                    if (item.descuento) {
-                      precio = (
-                        (item.precio * (100 - item.porcentajeDescuento)) /
-                        100
-                      ).toFixed(2);
-                    }
+                <div>
+                  <h1>Mi carro</h1>
+                  <ul className={classes["cart-items"]}>
+                    {cartItems.map((item) => {
+                      let precio = item.precio;
+                      if (item.descuento) {
+                        precio = (
+                          (item.precio * (100 - item.porcentajeDescuento)) /
+                          100
+                        ).toFixed(2);
+                      }
 
-                    return (
-                      <li key={item.id} className={classes["cart-item"]}>
-                        <Image src={placeholderImg} alt="imagen" />
-                        <Link
-                          href={`/catalogo/${item.id}`}
-                          onClick={handleToggle}
-                        >
-                          {item.nombre}
-                        </Link>
-                        <h2>${precio}</h2>
-                        <Cantidad
-                          cantidad={item.quantity}
-                          handleIncCarro={() => handleIncCarro(item)}
-                          handleDecCarro={() => handleDecCarro(item)}
-                        />
-                        <div>
-                          <h3>Subtotal</h3>
-                          <h2>${(item.quantity * precio).toFixed(2)}</h2>
-                        </div>
-                      </li>
-                    );
-                  })}
-                </ul>
-                <div className={classes["cart-total"]}>
-                  <h2>Precio Total:</h2>
-                  <h1>${precioTotal.toFixed(2)}</h1>
+                      return (
+                        <li key={item.id} className={classes["cart-item"]}>
+                          <Image src={placeholderImg} alt="imagen" />
+                          <div
+                            style={{ display: "flex", flexDirection: "column" }}
+                          >
+                            <Link
+                              href={`/catalogo/${item.id}`}
+                              onClick={handleToggle}
+                            >
+                              {item.nombre}
+                            </Link>
+                            <Cantidad
+                              cantidad={item.quantity}
+                              handleIncCarro={() => handleIncCarro(item)}
+                              handleDecCarro={() => handleDecCarro(item)}
+                            />
+                          </div>
+
+                          <div style={{ fontSize: "0.7rem" }}>
+                            <h2 style={{ color: "#96de37" }}>${precio}</h2>
+                            <h3>Subtotal</h3>
+                            <h2 style={{ color: "#d4d4d4" }}>
+                              ${(item.quantity * precio).toFixed(2)}
+                            </h2>
+                          </div>
+                        </li>
+                      );
+                    })}
+                  </ul>
                 </div>
-                <button
-                  className={classes["cart-finalizar"]}
-                  onClick={handleToggleFinalizar}
-                >
-                  Finalizar Compra
-                </button>
+                <div className={classes["cart-total"]}>
+                  <div
+                    style={{ display: "flex", justifyContent: "space-between" }}
+                  >
+                    <h2>Total:</h2>
+                    <h3>${precioTotal.toFixed(2)}</h3>
+                  </div>
+                  <button
+                    className={classes["cart-finalizar"]}
+                    onClick={handleToggleFinalizar}
+                  >
+                    Finalizar Compra
+                  </button>
+                </div>
               </>
             )}
           </>

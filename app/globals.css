@@ -2,7 +2,7 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-  scrollbar-color: #96de37 #000;
+  scrollbar-color: #96de37 #00000000;
 }
 html,
 body {

@@ -6,6 +6,7 @@ import Link from "next/link";
 import { supabase } from "@/lib/supabase";
 export default async function PagProducto({ params }) {
   const { slug } = await params;
+
   const { data: prod, error } = await supabase
     .from("supplements")
     .select("*")

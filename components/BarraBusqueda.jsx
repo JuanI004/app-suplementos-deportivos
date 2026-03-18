@@ -33,7 +33,7 @@ export default function BarraBusqueda() {
             cx="8"
             cy="8"
             r="6"
-            stroke="white"
+            stroke="black"
             strokeWidth="2"
             fill="none"
           />
@@ -42,7 +42,7 @@ export default function BarraBusqueda() {
             y1="12.5"
             x2="18"
             y2="18"
-            stroke="white"
+            stroke="black"
             strokeWidth="2"
             strokeLinecap="round"
           />
