@@ -106,6 +106,28 @@
   background: linear-gradient(90deg, rgba(150, 222, 55, 0.15), transparent);
   margin-bottom: 1.4rem;
 }
+.cargando {
+  height: calc(100vh - 17rem - 9.75rem);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.spinner {
+  border: 8px solid #f3f3f3;
+  border-top: 8px solid #96de37;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  animation: spin 1s linear infinite;
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
 .perfil-pedidos h3 {
   font-size: 0.8rem;
   text-transform: uppercase;
@@ -151,6 +173,13 @@
 }
 .pedidos-categorias li:hover h4 {
   color: #96de37;
+}
+.sin-pedidos {
+  font-size: 0.9rem;
+  color: #6e6e6e;
+  text-transform: uppercase;
+  text-align: center;
+  margin-top: 2rem;
 }
 .pedidos-lista {
   list-style: none;

@@ -1,126 +1,72 @@
 "use client";
-import { useAuth } from "@/components/Auth";
 import { useRouter } from "next/navigation";
 import classes from "./page.module.css";
 import placeholder from "@/public/images/placeholder.webp";
 import PedidoEstadoBar from "@/components/PedidoEstadoBar";
 import { OVERVIEW_ITEMS } from "@/utils/data";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
-
-const MOCK_PEDIDOS = [
-  {
-    id: "a1b2c3d4-e5f6-7890-abcd-ef1234567890",
-    created_at: "2026-01-15T10:30:00Z",
-    estado: "entregado",
-    total: 154.97,
-    metodo_pago: "Transferencia bancaria",
-    notas: "Dejar en portería",
-    nombre: "Juan",
-    apellido: "García",
-    direccion: "Av. Italia 1234",
-    ciudad: "Montevideo",
-    departamento: "Montevideo",
-    codigo_postal: "11300",
-    items: [
-      {
-        id: 1,
-        nombre: "Whey Protein Isolate Chocolate",
-        cantidad: 2,
-        precio: 89.99,
-        descuento: true,
-        porcentajeDescuento: 15,
-      },
-      {
-        id: 6,
-        nombre: "Creatina Monohidrato Micronizada",
-        cantidad: 1,
-        precio: 39.99,
-        descuento: true,
-        porcentajeDescuento: 25,
-      },
-    ],
-  },
-  {
-    id: "b2c3d4e5-f6a7-8901-bcde-f12345678901",
-    created_at: "2026-02-03T14:20:00Z",
-    estado: "en_camino",
-    total: 94.99,
-    metodo_pago: "Mercado Pago",
-    notas: "",
-    nombre: "Juan",
-    apellido: "García",
-    direccion: "Av. Italia 1234",
-    ciudad: "Montevideo",
-    departamento: "Montevideo",
-    codigo_postal: "11300",
-    items: [
-      {
-        id: 5,
-        nombre: "Caseína Micelar Nocturna",
-        cantidad: 1,
-        precio: 94.99,
-        descuento: false,
-        porcentajeDescuento: 0,
-      },
-    ],
-  },
-  {
-    id: "c3d4e5f6-a7b8-9012-cdef-123456789012",
-    created_at: "2026-03-01T09:00:00Z",
-    estado: "pendiente",
-    total: 44.99,
-    metodo_pago: "Efectivo",
-    notas: "",
-    nombre: "Juan",
-    apellido: "García",
-    direccion: "Av. Italia 1234",
-    ciudad: "Montevideo",
-    departamento: "Montevideo",
-    codigo_postal: "11300",
-    items: [
-      {
-        id: 12,
-        nombre: "BCAAs 2:1:1 Limón",
-        cantidad: 1,
-        precio: 44.99,
-        descuento: false,
-        porcentajeDescuento: 0,
-      },
-    ],
-  },
-  {
-    id: "d4e5f6a7-b8c9-0123-defa-234567890123",
-    created_at: "2025-12-20T16:45:00Z",
-    estado: "cancelado",
-    total: 119.99,
-    metodo_pago: "Transferencia bancaria",
-    notas: "",
-    nombre: "Juan",
-    apellido: "García",
-    direccion: "Av. Italia 1234",
-    ciudad: "Montevideo",
-    departamento: "Montevideo",
-    codigo_postal: "11300",
-    items: [
-      {
-        id: 8,
-        nombre: "Ganador de Masa Extreme 5000",
-        cantidad: 1,
-        precio: 119.99,
-        descuento: true,
-        porcentajeDescuento: 15,
-      },
-    ],
-  },
-];
+import { supabase } from "@/lib/supabase";
 
 export default function Perfil() {
-  const { session, setSession } = useAuth();
-  const [pedidoAbierto, setPedidoAbierto] = useState(null);
   const router = useRouter();
-  if (!session) {
+  const [pedidoAbierto, setPedidoAbierto] = useState(null);
+  const [categoriaSeleccionada, setCategoriaSeleccionada] = useState("pedidos");
+  const [pedidos, setPedidos] = useState([]);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [session, setSession] = useState(null);
+  useEffect(() => {
+    async function fetchSession() {
+      const { data, error } = await supabase.auth.getSession();
+      if (!error && data.session) {
+        setSession(data.session ?? null);
+      } else {
+        router.push("/login");
+      }
+    }
+    fetchSession();
+  }, []);
+  useEffect(() => {
+    if (!session) return;
+    async function fetchPedidos() {
+      const { data: pedidos, error } = await supabase
+        .from("pedidos")
+        .select("*")
+        .eq("user_id", session.user.id);
+      if (error) {
+        setError(error);
+        setLoading(false);
+      } else {
+        setPedidos(pedidos);
+        setLoading(false);
+      }
+    }
+    fetchPedidos();
+  }, [session]);
+
+  let pedidosFiltrados = [];
+  if (categoriaSeleccionada === "pedidos") {
+    pedidosFiltrados = pedidos;
+  } else {
+    pedidosFiltrados = pedidos.filter(
+      (pedido) => pedido.estado === categoriaSeleccionada,
+    );
+  }
+  async function handleLogout() {
+    await supabase.auth.signOut();
     router.push("/login");
+  }
+
+  function formatMetPago(metodo) {
+    switch (metodo) {
+      case "transferencia":
+        return "Transferencia Bancaria";
+      case "efectivo":
+        return "Efectivo";
+      case "mercadopago":
+        return "Mercado Pago";
+    }
   }
   function sumaTotal(items) {
     return items.reduce((total, item) => {
@@ -133,6 +79,16 @@ export default function Perfil() {
   function cantTotal(items) {
     return items.reduce((total, item) => total + item.cantidad, 0);
   }
+  if (loading) {
+    return (
+      <div className={classes.bg}>
+        {" "}
+        <div className={classes.cargando}>
+          <div className={classes.spinner}></div>
+        </div>
+      </div>
+    );
+  }
   return (
     <div className={classes.bg}>
       <main className={classes.perfil}>
@@ -142,7 +98,7 @@ export default function Perfil() {
             <h1>{session.user?.user_metadata?.nombre ?? "Perfil"}</h1>
             <p>{session.user?.email}</p>
           </header>
-          <button>
+          <button onClick={handleLogout}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="16"
@@ -162,9 +118,8 @@ export default function Perfil() {
               <div key={key} className={classes["overview-item"]}>
                 <h1>
                   {item.label === "Pedidos"
-                    ? MOCK_PEDIDOS.length
-                    : MOCK_PEDIDOS.filter((pedido) => pedido.estado === key)
-                        .length}
+                    ? pedidos.length
+                    : pedidos.filter((pedido) => pedido.estado === key).length}
                 </h1>
                 <h3>{item.label}</h3>
               </div>
@@ -175,22 +130,24 @@ export default function Perfil() {
           <h3>Historial de Pedidos</h3>
           <ul className={classes["pedidos-categorias"]}>
             {Object.entries(OVERVIEW_ITEMS).map(([key, item]) => (
-              <li key={key}>
+              <li key={key} onClick={() => setCategoriaSeleccionada(key)}>
                 {" "}
                 <h4>{item.label !== "Pedidos" ? item.label : "Todos"}</h4>
                 {item.label !== "Pedidos" && (
                   <p>
-                    {
-                      MOCK_PEDIDOS.filter((pedido) => pedido.estado === key)
-                        .length
-                    }
+                    {pedidos.filter((pedido) => pedido.estado === key).length}
                   </p>
                 )}
               </li>
             ))}
           </ul>
           <ul className={classes["pedidos-lista"]}>
-            {MOCK_PEDIDOS.map((pedido) => (
+            {pedidosFiltrados.length === 0 && (
+              <p className={classes["sin-pedidos"]}>
+                No hay pedidos en esta categoría.
+              </p>
+            )}
+            {pedidosFiltrados.map((pedido) => (
               <li key={pedido.id}>
                 <div
                   key={pedido.id}
@@ -284,10 +241,16 @@ export default function Perfil() {
                       </div>
                       <div>
                         <h3>Pago</h3>
-                        <p>{pedido.metodo_pago}</p>
-                        <p style={{ fontStyle: "italic" }}>
-                          &quot;{pedido.notas}&quot;
-                        </p>
+                        <p>{formatMetPago(pedido.metodo_pago)}</p>
+                        {pedido.notas !== "" && (
+                          <p
+                            style={{
+                              fontStyle: "italic",
+                            }}
+                          >
+                            &quot;{pedido.notas}&quot;
+                          </p>
+                        )}
                       </div>
                     </div>
                   </section>

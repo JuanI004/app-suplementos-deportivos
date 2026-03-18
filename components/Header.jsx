@@ -7,12 +7,18 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useSelector } from "react-redux";
 import Carro from "./Carro";
-import { useAuth } from "./Auth";
 import { supabase } from "@/lib/supabase";
 
 export default function Header() {
-  const { session, setSession } = useAuth();
+  const [session, setSession] = useState(null);
   useEffect(() => {
+    async function fetchSession() {
+      supabase.auth.getSession().then(async ({ data, error }) => {
+        if (!error && data.session) {
+          setSession(data.session ?? null);
+        }
+      });
+    }
     const { data: authListener } = supabase.auth.onAuthStateChange(
       (_event, session) => {
         setSession(session);
@@ -21,7 +27,7 @@ export default function Header() {
     return () => {
       authListener.subscription.unsubscribe();
     };
-  }, [session, setSession]);
+  }, []);
   const [navIsOpen, setNavIsOpen] = useState(false);
   const [cartIsOpen, setCartIsOpen] = useState(false);
   const [catMenuIsOpen, setCatMenuIsOpen] = useState(false);
