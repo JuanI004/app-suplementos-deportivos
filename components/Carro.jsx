@@ -9,9 +9,11 @@ import { useDispatch } from "react-redux";
 import { cartActions } from "@/store/slices/cart-slice";
 import { useState } from "react";
 import FinalizarCompra from "./FinalizarCompra";
+import { useRouter } from "next/navigation";
 
 export default function Carro({ handleToggle }) {
   const dispatch = useDispatch();
+  const router = useRouter();
   const cartItems = useSelector((state) => state.cart.items);
   const [toggleFinalizar, setToggleFinalizar] = useState(false);
   const precioTotal = cartItems.reduce((total, item) => {
@@ -21,8 +23,9 @@ export default function Carro({ handleToggle }) {
     }
     return total + precio * item.quantity;
   }, 0);
-  function handleToggleFinalizar() {
-    setToggleFinalizar((prev) => !prev);
+  function handleFinalizar() {
+    handleToggle();
+    router.push("/finalizar-compra");
   }
   function handleIncCarro(item) {
     dispatch(
@@ -66,16 +69,34 @@ export default function Carro({ handleToggle }) {
             {cartItems.length === 0 ? (
               <>
                 {" "}
-                <h1>Mi carro</h1>{" "}
-                <p
+                <div
                   style={{
-                    color: "white",
-                    textAlign: "center",
-                    padding: "2rem",
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    gap: "1rem",
                   }}
                 >
-                  Tu carrito está vacío
-                </p>
+                  <h1>Mi carro</h1>{" "}
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="60"
+                    height="60"
+                    fill="#5f5f5f"
+                    viewBox="0 0 256 256"
+                  >
+                    <path d="M104,216a16,16,0,1,1-16-16A16,16,0,0,1,104,216Zm88-16a16,16,0,1,0,16,16A16,16,0,0,0,192,200ZM239.71,74.14l-25.64,92.28A24.06,24.06,0,0,1,191,184H92.16A24.06,24.06,0,0,1,69,166.42L33.92,40H16a8,8,0,0,1,0-16H40a8,8,0,0,1,7.71,5.86L57.19,64H232a8,8,0,0,1,7.71,10.14ZM221.47,80H61.64l22.81,82.14A8,8,0,0,0,92.16,168H191a8,8,0,0,0,7.71-5.86Z"></path>
+                  </svg>
+                  <p
+                    style={{
+                      color: "#5f5f5f",
+                      textAlign: "center",
+                      paddingBottom: "2rem",
+                    }}
+                  >
+                    Tu carrito está vacío
+                  </p>
+                </div>
               </>
             ) : (
               <>
@@ -131,7 +152,7 @@ export default function Carro({ handleToggle }) {
                   </div>
                   <button
                     className={classes["cart-finalizar"]}
-                    onClick={handleToggleFinalizar}
+                    onClick={handleFinalizar}
                   >
                     Finalizar Compra
                   </button>

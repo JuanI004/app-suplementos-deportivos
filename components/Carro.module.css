@@ -7,15 +7,17 @@
   position: fixed;
   margin-top: 3.6rem;
   padding-top: 2rem;
+  overflow-y: scroll;
   right: 0;
   z-index: 2;
   background: #131313;
   height: calc(100vh - 3.6rem);
   box-shadow: 0 0 60px rgba(0, 0, 0, 0.6);
   width: 80vw;
-  max-width: 450px;
+  max-width: 400px;
   animation: slideIn 0.3s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
+
 @keyframes slideIn {
   from {
     transform: translateX(100%);
@@ -28,6 +30,8 @@
 }
 .cart h1 {
   color: white;
+  max-width: 350px;
+  width: 70vw;
   font-size: 1.5rem;
   text-transform: uppercase;
   padding-top: 0.5rem;
@@ -35,6 +39,16 @@
   border-bottom: 1px solid #272727;
 
   margin-bottom: 1rem;
+}
+@media (max-width: 40rem) {
+  .cart {
+    width: 100vw;
+    max-width: none;
+  }
+  .cart h1 {
+    width: 90vw;
+    max-width: none;
+  }
 }
 .cart-items {
   list-style: none;
@@ -46,19 +60,30 @@
   align-items: center;
   margin-bottom: 1rem;
   height: 100px;
-  width: 400px;
+  max-width: 350px;
+  width: 70vw;
+  padding: 1rem 0;
   border-radius: 10px;
   padding: 1rem;
   border: 1px solid #313131;
   background: #27272798;
   transition: transform 0.3s ease;
 }
+@media (max-width: 40rem) {
+  .cart-item {
+    flex-direction: column;
+    height: auto;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: none;
+  }
+}
 .cart-item:hover {
   transform: scale(1.05);
 }
 .cart-item a {
   font-size: 0.9rem;
-
   margin-bottom: 0.5rem;
   max-width: 210px;
   text-decoration: none;
@@ -86,7 +111,8 @@
   color: grey;
 }
 .cart-total {
-  width: 400px;
+  max-width: 350px;
+  width: 70vw;
   padding: 1rem 0;
   border-top: 1px solid #272727;
   display: flex;
@@ -167,9 +193,4 @@
 }
 .close-button svg {
   display: block;
-}
-@media (max-width: 49rem) {
-  .cart-item {
-    flex-direction: column;
-  }
 }
