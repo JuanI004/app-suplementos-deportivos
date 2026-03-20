@@ -30,7 +30,7 @@
   font-weight: 700;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: rgba(150, 222, 55, 0.5);
+  color: #96de37;
   padding: 0 0.4rem;
 }
 .finalizar-info {
@@ -98,7 +98,6 @@
   border-radius: 10px;
   margin-bottom: 2rem;
 }
-.finalizar-input,
 .finalizar-pago {
   display: flex;
   flex-direction: column;
@@ -107,7 +106,6 @@
   margin-bottom: 0.4rem;
   padding: 0 0.5rem;
 }
-.finalizar-input label,
 .finalizar-pago label {
   font-size: 0.8rem;
   margin-bottom: 0.3rem;
@@ -118,13 +116,10 @@
 .finalizar-pago select {
   background-color: #131313;
 }
-.finalizar-input input {
-  color: rgb(202, 202, 202);
-}
+
 .finalizar-pago select {
   color: #555;
 }
-.finalizar-input input,
 .finalizar-pago select {
   height: 2.5rem;
   outline: none;
@@ -236,25 +231,23 @@
   }
 }
 .desactivado {
-  align-self: center;
-  width: 60vw;
-  max-width: 316px;
   background: #a6f33f;
   background: linear-gradient(
     179deg,
-    rgb(156, 206, 91) 0%,
-    rgb(145, 179, 100) 50%,
-    rgb(116, 138, 87) 100%
+    rgb(178, 245, 91) 0%,
+    rgb(163, 218, 91) 50%,
+    rgb(138, 179, 85) 100%
   );
-  cursor: not-allowed;
-  color: white;
+  color: rgb(88, 88, 88);
+  text-transform: uppercase;
+  font-weight: 800;
   padding: 1rem;
+  padding: 1rem 3rem;
   font-size: 15px;
-  margin-top: 2rem;
-  font-weight: bold;
+  cursor: not-allowed;
   font-family: "Montserrat", sans-serif;
   border: none;
-  border-radius: 10px;
+  border-radius: 25px;
   box-shadow:
     rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
     rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
@@ -312,7 +305,7 @@
 .pedido-resumen__caracteristica p {
   font-size: 0.8rem;
   font-weight: 700;
-  color: rgba(150, 222, 55, 0.5);
+  color: #96de37;
   padding: 0 0.4rem;
 }
 .pedido-resumen img {
@@ -329,6 +322,22 @@
   margin-bottom: 0.5rem;
 
   border-radius: 10px;
+}
+
+.cart-item__quantity {
+  position: absolute;
+  top: 0rem;
+  left: -0.4rem;
+  background: #96de37;
+  color: black !important;
+  font-size: 0.7rem !important;
+  border-radius: 100%;
+  font-weight: bold;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .cart-item p {
@@ -365,7 +374,15 @@
   text-transform: uppercase;
   padding: 0;
 }
-
+.pedido-resumen__aviso {
+  padding: 0.5rem;
+  border: 1px solid #96de37;
+  border-radius: 10px;
+  background: #96de371f;
+  color: #96de37;
+  font-size: 0.8rem;
+  margin-bottom: 1rem;
+}
 .pedido-total p {
   color: #96de37;
   font-weight: 900;

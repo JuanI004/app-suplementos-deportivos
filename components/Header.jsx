@@ -12,21 +12,19 @@ import { supabase } from "@/lib/supabase";
 export default function Header() {
   const [session, setSession] = useState(null);
   useEffect(() => {
-    async function fetchSession() {
-      supabase.auth.getSession().then(async ({ data, error }) => {
-        if (!error && data.session) {
-          setSession(data.session ?? null);
-        }
-      });
-    }
-    const { data: authListener } = supabase.auth.onAuthStateChange(
-      (_event, session) => {
-        setSession(session);
-      },
-    );
-    return () => {
-      authListener.subscription.unsubscribe();
-    };
+    supabase.auth.getSession().then(({ data }) => {
+      if (!data.session) router.push("/login");
+      setSession(data.session);
+    });
+
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((_event, session) => {
+      if (!session) router.push("/login");
+      setSession(session);
+    });
+
+    return () => subscription.unsubscribe();
   }, []);
   const [navIsOpen, setNavIsOpen] = useState(false);
   const [cartIsOpen, setCartIsOpen] = useState(false);
