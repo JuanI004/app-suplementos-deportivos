@@ -13,14 +13,12 @@ export default function Header() {
   const [session, setSession] = useState(null);
   useEffect(() => {
     supabase.auth.getSession().then(({ data }) => {
-      if (!data.session) router.push("/login");
       setSession(data.session);
     });
 
     const {
       data: { subscription },
     } = supabase.auth.onAuthStateChange((_event, session) => {
-      if (!session) router.push("/login");
       setSession(session);
     });
 

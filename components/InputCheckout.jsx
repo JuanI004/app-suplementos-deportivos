@@ -20,9 +20,7 @@ export default function InputCheckout({
         value={value}
         onChange={onChange}
       />
-      {errores.direccion && (
-        <span className={classes["finalizar-error"]}>{errores.direccion}</span>
-      )}
+      {errores && <span className={classes["finalizar-error"]}>{errores}</span>}
     </div>
   );
 }

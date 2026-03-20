@@ -158,7 +158,7 @@ export default function FinalizarCompra() {
               value={formData.nombre}
               placeholder="Juan"
               onChange={handleChange}
-              errores={errores}
+              errores={errores.nombre}
             />
             <InputCheckout
               label="Apellido *"
@@ -167,7 +167,7 @@ export default function FinalizarCompra() {
               value={formData.apellido}
               placeholder="Pérez"
               onChange={handleChange}
-              errores={errores}
+              errores={errores.apellido}
             />
             <InputCheckout
               label="Teléfono *"
@@ -176,7 +176,7 @@ export default function FinalizarCompra() {
               value={formData.telefono}
               placeholder="099 123 456"
               onChange={handleChange}
-              errores={errores}
+              errores={errores.telefono}
             />
             <InputCheckout
               label="Email *"
@@ -185,7 +185,7 @@ export default function FinalizarCompra() {
               value={formData.email}
               placeholder="tu@email.com"
               onChange={handleChange}
-              errores={errores}
+              errores={errores.email}
             />
           </div>
           <div className={classes["finalizar-direccion"]}>
@@ -199,7 +199,7 @@ export default function FinalizarCompra() {
               value={formData.direccion}
               placeholder="Calle y número"
               onChange={handleChange}
-              errores={errores}
+              errores={errores.direccion}
             />
             <div className={classes["finalizar-ubicacion"]}>
               <InputCheckout
@@ -209,7 +209,7 @@ export default function FinalizarCompra() {
                 value={formData.ciudad}
                 placeholder="Montevideo"
                 onChange={handleChange}
-                errores={errores}
+                errores={errores.ciudad}
               />
               <InputCheckout
                 label="Departamento *"
@@ -218,7 +218,7 @@ export default function FinalizarCompra() {
                 value={formData.departamento}
                 placeholder="Montevideo"
                 onChange={handleChange}
-                errores={errores}
+                errores={errores.departamento}
               />
               <InputCheckout
                 label="Código Postal *"
@@ -227,7 +227,7 @@ export default function FinalizarCompra() {
                 value={formData.codigoPostal}
                 placeholder="12300"
                 onChange={handleChange}
-                errores={errores}
+                errores={errores.codigoPostal}
               />
             </div>
           </div>
