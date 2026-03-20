@@ -13,7 +13,6 @@ export default function FinalizarCompra() {
   const cargado = useCargado();
   const [session, setSession] = useState(null);
   const [errores, setErrores] = useState({});
-  const [pedidoExitoso, setPedidoExitoso] = useState(false);
   const [formData, setFormData] = useState({
     nombre: "",
     apellido: "",
@@ -110,19 +109,38 @@ export default function FinalizarCompra() {
     if (!validarFormulario()) {
       return;
     }
-    setPedidoExitoso(true);
+    const items = cartItems.map((item) => ({
+      id: item.id,
+      nombre: item.nombre,
+      cantidad: item.quantity,
+      precio: item.precio,
+      descuento: item.descuento ?? false,
+      porcentajeDescuento: item.porcentajeDescuento ?? 0,
+    }));
+
+    const { error } = await supabase.from("pedidos").insert({
+      user_id: session.user.id,
+      estado: "pendiente",
+      items,
+      total: precioTotal,
+      nombre: formData.nombre,
+      apellido: formData.apellido,
+      email: formData.email,
+      telefono: formData.telefono,
+      direccion: formData.direccion,
+      ciudad: formData.ciudad,
+      departamento: formData.departamento,
+      codigo_postal: formData.codigoPostal,
+      metodo_pago: formData.metodoPago,
+      notas: formData.notas || null,
+    });
+    if (error) {
+      setErrores({
+        general: "No se pudo guardar el pedido. Intentá de nuevo.",
+      });
+      return;
+    }
     dispatch(cartActions.clearCart());
-  }
-  if (pedidoExitoso) {
-    return (
-      <div className={classes.finalizar}>
-        <div className={classes["pedido-exitoso"]}>
-          <h2>¡Pedido realizado con éxito!</h2>
-          <p>Recibirás un email de confirmación a {formData.email}</p>
-          <p>Total: ${precioTotal.toFixed(2)}</p>
-        </div>
-      </div>
-    );
   }
   return (
     <div className={classes.finalizar}>
@@ -246,6 +264,15 @@ export default function FinalizarCompra() {
               />
             </div>
           </div>
+          <p
+            style={{
+              color: "#f87171",
+              fontSize: "0.8rem",
+              textAlign: "center",
+            }}
+          >
+            {errores.general}
+          </p>
           <button
             type="submit"
             className={
