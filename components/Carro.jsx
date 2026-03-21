@@ -1,5 +1,5 @@
 "use client";
-import placeholderImg from "@/public/images/placeholder.webp";
+import { PRODUCT_IMAGES } from "@/utils/data";
 import Image from "next/image";
 import classes from "./Carro.module.css";
 import Link from "next/link";
@@ -111,7 +111,12 @@ export default function Carro({ handleToggle }) {
 
                   return (
                     <li key={item.id} className={classes["cart-item"]}>
-                      <Image src={placeholderImg} alt="imagen" />
+                      <Image
+                        src={PRODUCT_IMAGES[item.imagen]}
+                        width={180}
+                        height={180}
+                        alt="imagen"
+                      />
                       <div style={{ display: "flex", flexDirection: "column" }}>
                         <Link
                           href={`/catalogo/${item.id}`}

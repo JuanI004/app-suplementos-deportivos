@@ -2,7 +2,7 @@
 import classes from "./page.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { cartActions } from "@/store/slices/cart-slice";
-import placeholderImg from "@/public/images/placeholder.webp";
+import { PRODUCT_IMAGES } from "@/utils/data";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import InputCheckout from "@/components/InputCheckout";
@@ -317,7 +317,12 @@ export default function FinalizarCompra() {
                 <p className={classes["cart-item__quantity"]}>
                   {item.quantity}
                 </p>
-                <Image src={placeholderImg} alt="imagen" height={60} />
+                <Image
+                  src={PRODUCT_IMAGES[item.imagen]}
+                  alt="imagen"
+                  width={180}
+                  height={180}
+                />
                 <div style={{ display: "flex", flexDirection: "column" }}>
                   <p>{item.nombre}</p>
                   <h2>

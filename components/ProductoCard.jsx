@@ -1,5 +1,5 @@
 import classes from "./ProductoCard.module.css";
-import placeholderImg from "@/public/images/placeholder.webp";
+import { PRODUCT_IMAGES } from "@/utils/data";
 import Image from "next/image";
 
 export default function ProductoCard({ prod, marca = null }) {
@@ -19,7 +19,12 @@ export default function ProductoCard({ prod, marca = null }) {
       )}
       {marca && <div className={classes["marca-badge"]}>{marca}</div>}
       <div className={classes["card-img"]}>
-        <Image src={placeholderImg} alt={prod.nombre} />
+        <Image
+          src={PRODUCT_IMAGES[prod.imagen]}
+          width={250}
+          height={250}
+          alt={prod.nombre}
+        />
       </div>
       <div className={classes["card-txt"]}>
         <h3>{prod.nombre}</h3>

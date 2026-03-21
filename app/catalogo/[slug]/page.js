@@ -60,7 +60,10 @@ export default async function PagProducto({ params }) {
         Volver al catálogo
       </Link>
       <div className={classes.prod}>
-        <Imagenes />
+        <Imagenes
+          img={prod.imagen}
+          infoNutricionalImg={prod.imagenNutricional}
+        />
         <div className={classes["prod-info"]}>
           <h1>{prod.nombre}</h1>
           <div className={classes.cats}>
