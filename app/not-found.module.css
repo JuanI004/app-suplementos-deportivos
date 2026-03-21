@@ -1,0 +1,92 @@
+.bg {
+  padding-top: 62px;
+  height: 100vh;
+  width: 100vw;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+  align-items: center;
+  background: black;
+  opacity: 1;
+  background-image:
+    linear-gradient(#96de3715 1px, transparent 1px),
+    linear-gradient(to right, #96de3715 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+.bg::before {
+  content: "";
+  position: absolute;
+  top: -200px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 600px;
+  height: 500px;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(150, 222, 55, 0.07) 0%,
+    transparent 65%
+  );
+  pointer-events: none;
+}
+.bg h1 {
+  font-size: 10rem;
+  color: #96de37bb;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  font-weight: 900;
+  text-shadow: 2px 2px 5rem rgba(150, 222, 55, 0.363);
+}
+.bg h2 {
+  font-size: 1.7rem;
+  color: white;
+  margin-top: -2rem;
+  text-transform: uppercase;
+  font-weight: 800;
+}
+
+.bg p {
+  max-width: 400px;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.507);
+}
+.bg button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: linear-gradient(
+    179deg,
+    rgba(166, 243, 63, 1) 0%,
+    rgba(147, 217, 56, 1) 50%,
+    rgba(120, 179, 45, 1) 100%
+  );
+  color: black;
+  text-transform: uppercase;
+  font-weight: 800;
+  padding: 1rem;
+  padding: 1rem 3rem;
+  font-size: 15px;
+  font-family: "Montserrat", sans-serif;
+  border: none;
+  border-radius: 25px;
+  box-shadow: 0 4px 20px rgba(150, 222, 55, 0.2);
+  transition:
+    transform 0.3s ease,
+    background 0.3s ease;
+}
+.bg button:hover {
+  background: #96de37;
+  background: linear-gradient(
+    179deg,
+    rgba(150, 222, 55, 1) 0%,
+    rgba(128, 189, 49, 1) 50%,
+    rgba(103, 153, 38, 1) 100%
+  );
+  cursor: pointer;
+  transform: scale(1.04);
+}
+.bg a {
+  text-decoration: none;
+}

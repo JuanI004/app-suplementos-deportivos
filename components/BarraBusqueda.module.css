@@ -20,8 +20,8 @@
   background: rgb(224, 224, 224);
   outline: none;
   border: none;
-  border-top-left-radius: 10px;
-  border-bottom-left-radius: 10px;
+  border-top-left-radius: 25px;
+  border-bottom-left-radius: 25px;
   color: #1d1d1d;
 }
 
@@ -30,8 +30,8 @@
   padding: 1rem;
 
   border: none;
-  border-top-right-radius: 10px;
-  border-bottom-right-radius: 10px;
+  border-top-right-radius: 25px;
+  border-bottom-right-radius: 25px;
   background: #a6f33f;
   background: linear-gradient(
     179deg,

@@ -2,7 +2,7 @@
 
 E-commerce de suplementos deportivos construido como proyecto de portfolio. Permite explorar un catálogo de productos, gestionar un carrito de compras y realizar pedidos con autenticación de usuarios.
 
-> **⚠️ Proyecto de portfolio** — Ningún pedido será procesado ni ningún producto será entregado.
+> **⚠️ Proyecto de portfolio** — Ningún producto será entregado.
 
 ## Demo
 
