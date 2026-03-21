@@ -4,7 +4,6 @@ E-commerce de suplementos deportivos construido como proyecto de portfolio. Perm
 
 > **⚠️ Proyecto de portfolio** — Ningún producto será entregado.
 
-## Demo
 
 ![IronFuel Screenshot](public/images/ironfuel-header.webp)
 
